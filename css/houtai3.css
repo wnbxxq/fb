@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.conter_warp{
+    width: 100%;
+    /*height: 307px;*/
+    overflow: hidden;
+    background-image:linear-gradient(
+            #2C3F82 0%,#384372 100%
+    );
+}
+.conter{
+    width: 1245px;
+    height: 205px;
+    margin: 65px auto 40px;
+}
+.conter ul{
+    position: relative;
+    width: 163px;
+    height: 203px;
+    float: left;
+    list-style: none;
+    margin-left: 53px;
+    background: #212747;
+}
+.write{
+    position: absolute;
+    width: 163px;
+    height: 102px;
+    text-align: center;
+    color:white;
+    padding-top:40px;
+    transition: 0.5s;
+}
+.en{
+    padding-top: 20px;
+  font-size:14px;
+}
+.een{
+    width: 109px;
+    margin-left: 26px;
+    padding-top: 15px;
+    display: none;
+}
+#f2,#f3,#f4,#f5,#f6,#f7{
+    position: absolute;
+    color: white;
+    font-size: 45px;
+    width: 45px;
+    height: 45px;
+    display: block;
+    left:60px;
+    bottom: 20px;
+    transition: 0.5s;
+}
+.conter ul:hover .en{
+    display: none;
+}
+.conter ul:hover .een{
+    display: block;
+}
+.conter ul:hover{
+    background:#3EB0E7;
+}
+.conter ul:hover .write{
+    transform:translateY(50px);
+}
+.conter ul:hover #f2{
+    transform:translateY(-110px);
+}
+.conter ul:hover #f3{
+    transform:translateY(-110px);
+}
+.conter ul:hover #f4{
+    transform:translateY(-110px);
+}
+.conter ul:hover #f5{
+    transform:translateY(-110px);
+}
+.conter ul:hover #f6{
+    transform:translateY(-110px);
+}
+.conter ul:hover #f7{
+    transform:translateY(-110px);
+}
+.chart_warp{
+  width: 100%;
+  height: 1000px;
+  background:url("../Images/index_body_bg.jpg");
+}
+.chart{
+  margin: 0 auto;
+  width: 1000px;
+  height: 1000px;
+}
+.chart01{
+  float: left;
+  width: 400px;
+  height: 400px;
+  margin-top: 30px;
+  background: white;
+}
+#chart01{
+  float: left;
+  width: 400px;
+  height: 400px;
+  margin-top: 30px;
+  background: white;
+}
+.chart02{
+  float: right;
+  width: 530px;
+  height: 400px;
+  background: white;
+  margin-top: 30px;
+}
+#chart02{
+  float: right;
+  width: 530px;
+  height: 400px;
+  background: white;
+}
+.chart03{
+  float: left;
+  width: 580px;
+  height: 400px;
+  background: white;
+  margin-top: 30px;
+}
+#chart03{
+  float: left;
+  width: 580px;
+  height: 400px;
+  background: white;
+  margin-top: 30px;
+}
+

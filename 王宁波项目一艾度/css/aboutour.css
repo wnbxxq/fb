@@ -1,0 +1,181 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: "Microsoft YaHei";
+}
+
+.sky{
+    height: 480px;
+    background:#0096DD;
+    position: relative;
+    overflow: hidden;
+    transform:translate3d(0,0,0);
+    animation: sky-color 50s ease-out infinite;
+}
+.feng{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    transform-origin:40%  60%;
+    transition: 1s;
+    /*perspective: 400px;*/
+}
+.feng:hover{
+    transform:rotateX(40deg);
+}
+.qiu{
+    position: absolute;
+    right:115px;
+    top:480px;
+    transform:translate3d(0,0,0);
+    animation: qiuu 20s linear infinite;
+}
+@keyframes qiuu {
+    0%{top:480px}
+    13%{top:410px}
+    26%{top:340px}
+    39%{top:280px}
+    52%{top:220px}
+    65%{top:180px}
+    78%{top:120px}
+    91%{top:30px}
+    100%{top:-80px}
+}
+.clouds-one,.clouds-two,.clouds-three{
+    background:url("../images/cloud_one.png");
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 300%;
+    transform:translate3d(0,0,0);
+    animation:  one linear infinite;
+}
+.clouds-two{
+    background:url("../images/cloud_two.png");
+    animation: two 100s linear infinite;
+}
+.clouds-three{
+    background:url("../images/cloud_three.png");
+    animation: three linear infinite;
+}
+@keyframes sky-color{
+    0%{background:#007fd5}
+    50% {background: #000}
+    100% {background: #007fd5}
+}
+@keyframes one{
+    0%{left:0}
+    100%{left:-200%}
+}
+@keyframes two{
+    0%{left:0}
+    100%{left:-200%}
+}
+@keyframes three{
+    0%{left:0}
+    100%{left:-200%}
+}
+
+
+.second-box{
+    width: 100%;
+    min-width: 1200px;
+}
+.second{
+    width: 960px;
+    margin: 0 auto;
+    text-align: center;
+    color:#7F7F7F;
+    overflow: hidden;
+}
+.second h3{
+    padding-top: 20px;
+    font-size: 16px;
+}
+.second-left{
+    width: 472px;
+    text-align:left;
+    color:#333333;
+    float: left;
+    border-bottom: 1px dashed #7F7F7F;
+}
+.second-left p{
+    font-size: 12px;
+    line-height: 30px;
+    color:#333333;
+}
+.second-left-bottom{
+    text-align: left;
+    color:#333333;
+    width:340px;
+}
+.second-left-bottom p{
+    font-size: 12px;
+}
+.second-right{
+    float: right;
+    width: 468px;
+    height: 350px;
+    margin-top:110px;
+}
+
+.third-box{
+    width: 100%;
+    overflow: hidden;
+    margin-top:20px;
+    background:url("../images/thired1.jpeg")no-repeat center;
+    background-size: 1920px 540px;
+    height:432px;
+}
+.third{
+    width: 960px;
+    height: 432px;
+    overflow: hidden;
+    margin: 0 auto;
+    color:#333333;
+}
+.third h3{
+    text-align: center;
+}
+.third h5{
+    text-align: center;
+}
+.third-left{
+    float: left;
+    width: 473px;
+    color:#333333;
+}
+.third-left h3{
+    padding-top:50px;
+    text-align: left;
+}
+.third-left p{
+    font-size: 12px;
+    padding-top:26px;
+    line-height: 30px;
+}
+.third-right{
+    float: right;
+}
+.about1{
+    cursor: pointer;
+}
+.third3{
+    width: 434px;
+    padding-top: 80px;
+    cursor: pointer;
+}
+.forth-box{
+    width: 100%;
+    min-width: 960px;
+    background: #E8EEFB;
+}
+.forth{
+    margin: 10px auto 0                     ;
+    width:1100px;
+    height:600px;
+    overflow: hidden;
+}

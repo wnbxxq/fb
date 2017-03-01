@@ -1,0 +1,59 @@
+<ion-view view-title="课程列表" hide-nav-bar="true">
+  <style>
+    .title{text-align: center}
+    .courseList{background:#ddd;overflow: hidden;padding-bottom:2.5%}
+    .courseList ul li{width:20%;margin:2.5% 2.5% 0 2.5% ;
+      float: left;background: #fff;
+      border:1px solid #eee;line-height:2rem;
+      text-align: center;
+    }
+    .listL li{background:#ccc}
+  </style>
+
+  <ion-content>
+    <div class="item item-input-inset">
+      <div class="item-input-wrapper">
+        <span class="icon ion-ios-search"></span>
+        <input type="text"placeholder="请输入搜索词"class="item-input "/>
+      </div>
+    </div>
+
+    <div class="row item">
+      <div class="col col-50">
+        <h4 class="title" style="border-right:1px solid #cccccc" ng-click="show()"ng-style="listColor">课程列表
+        <i class="icon ion-ios-arrow-down"></i>
+        </h4>
+      </div>
+      <div class="col col-50">
+        <h4 class="title" style="border-right:1px solid #cccccc" ng-click="priceChange()" ng-style="priceColor">课程列表
+        <i class="icon ion-ios-arrow-down"></i>
+        </h4>
+      </div>
+    </div>
+
+
+    <div class="courseList" ng-show="listChange">
+      <ul>
+        <li ng-repeat="item in profession" ng-click="doSearch('',item.sysId,'')">{{item.title}}</li>
+        <li ng-click="doSearch('','全部','')">全部</li>
+      </ul>
+    </div>
+    <div class="listL" ng-repeat="item in priceList" ng-show="listprice">
+      <ul>
+        <li class="item">{{item.title}}</li>
+      </ul>
+    </div>
+
+    <!--课程列表-->
+    <div class="list ">
+      <ul>
+        <li class="item item-thumbnail-left" ng-repeat="item in lists">
+          <img ng-src="{{item.Cpic}}" alt=""/>
+          <h3>{{item.Cname}}</h3>
+          <p>{{item.Cdescribe}}</p>
+        </li>
+      </ul>
+    </div>
+    <ion-infinite-scroll distance="1%" immediate-check="true" on-infinite="loadMore()" ng-if="moredata"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

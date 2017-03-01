@@ -1,0 +1,28 @@
+<ion-view title="back" hide-nav-bar="true" style="background:url('img/login_bg.png') no-repeat;background-size: 100% 100%" >
+  <style>
+    a{
+      text-decoration: none;
+      color:#333;
+    }
+  </style>
+  <ion-content>
+<div class="warp" style="text-align: center;margin:15%">
+  <img src="img/login_logo.png" style="width:6rem"/>
+</div>
+    <div class="list padding">
+      <ul>
+        <li class="item item-input">
+          <input type="text" placeholder="用户名"ng-model="loginData.name" class="padding"/>
+        </li>
+        <li class="item item-input">
+        <input type="password" placeholder="密码"ng-model="loginData.pwd" class="padding"/>
+      </li>
+      </ul>
+      <button class="button button-block button-positive " style="margin-top:1.2rem"ng-click="login()">登录</button>
+      <a href="#/tab/register" style="float: left">注册</a>
+      <a style="float: right">忘记密码</a>
+      </span>
+      </span>
+    </div>
+  </ion-content>
+</ion-view>

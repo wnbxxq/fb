@@ -1,0 +1,252 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.warp_box{
+    width: 100%;
+    height: 100px;
+    background:url("../Images/index_body_bg.jpg");
+}
+.header_warp{
+    width: 100%;
+    height: 50px;
+    background: #222222;
+}
+.header{
+    width: 1340px;
+    height: 50px;
+    margin: 0 auto;
+}
+.header>img{
+     padding-top: 5px;
+     float: left;
+}
+.header_center{
+    width: 511px;
+    height: 50px;
+    height: 50px;
+    float:left;
+    /*background: pink;*/
+    margin-left:505px;
+    list-style: none;
+}
+.header_center li{
+    float: left;
+    width: 100px;
+    height: 50px;
+    font-size: 12px;
+    line-height: 50px;
+    color: #494949;
+  cursor: pointer;
+}
+.header_center li img{
+    vertical-align: middle;
+}
+
+
+
+.nav_warp{
+    width: 100%;
+    height: 50px;
+    z-index: 999;
+    background: #233367;
+}
+.nav{
+    width: 1000px;
+    height: 50px;
+    margin: 0 auto;
+}
+.nav ul{
+    list-style:none;
+    position: relative;
+    /*margin-left: 150px;*/
+}
+.nav>ul>li{
+    width: 145px;
+    height:35px;
+    float: left;
+    padding-top:15px;
+}
+.f1 {
+  padding-top: 18px;
+  color: white;
+}
+.nav ul li span{
+    font-size:15px;
+    color: white;
+}
+
+.hide{
+    position: absolute;
+    height: 145px;
+    left:-174px;
+    top:50px;
+    background:white;
+    display: none;
+    z-index: 999;
+}
+.nav ul li:hover .hide{
+    display: block;
+}
+.hide ul{
+   padding-top: 50px;
+    width: 1150px;
+    margin: 0 auto;
+    height: 42px;
+}
+.hide ul p{
+    width: 250px;
+    height: 40px;
+    float: left;
+    margin-right: 33px;
+    border:1px solid #555555;
+    font-size: 14px;
+    text-align: center;
+    line-height: 40px;
+}
+.hide ul p:hover{
+    background:#5766A3;
+    color:white;
+}
+.hide ul p:hover i{
+    color: white;
+}
+i{
+  margin-right:5px;
+  /*color: white;*/
+}
+.top,.top1,.top2,.top3,.top4,.top5{
+    position: absolute;
+    top:3px;
+    left:-16px;
+    transition: 0.5s;
+    opacity: 0;
+}
+.bottom,.bottom1,.bottom2,.bottom3,.bottom4,.bottom5{
+    position: absolute;
+    top:27px;
+    left:83px;
+    transition: 0.5s;
+    opacity: 0;
+}
+.top1{
+    left:131px;
+}
+.bottom1{
+    left:231px;
+}
+.top2{
+    /*position: absolute;*/
+    /*top:3px;*/
+    left:272px;
+    /*transition: 0.5s;*/
+}
+.bottom2{
+    /*position: absolute;*/
+    /*top:27px;*/
+    left:377px;
+    /*transition: 0.5s;*/
+}
+.top3{
+    /*position: absolute;*/
+    /*top:3px;*/
+    left:419px;
+    /*transition: 0.5s;*/
+}
+.bottom3{
+    /*position: absolute;*/
+    /*top:27px;*/
+    left:521px;
+    /*transition: 0.5s;*/
+}
+.top4{
+    /*position: absolute;*/
+    /*top:3px;*/
+    left:563px;
+    /*transition: 0.5s;*/
+}
+.bottom4{
+    /*position: absolute;*/
+    top:27px;
+    left:662px;
+    /*transition: 0.5s;*/
+}
+.top5{
+    /*position: absolute;*/
+    /*top:3px;*/
+    left:707px;
+    /*transition: 0.5s;*/
+}
+.bottom5{
+    /*position: absolute;*/
+    /*top:27px;*/
+    left:811px;
+    /*transition: 0.5s;*/
+}
+
+.nav ul li:hover .top{
+   transform:translateY(-4px);
+    transform:translateX(-6px);
+    opacity: 1;
+}
+.nav ul li:hover .bottom{
+    transform:translateY(4px);
+    transform:translateX(6px);
+    opacity: 1;
+}
+.nav ul li:hover .top1{
+    transform:translateY(-4px);
+    transform:translateX(-6px);
+    opacity: 1;
+}
+.nav ul li:hover .bottom1{
+    transform:translateY(4px);
+    transform:translateX(6px);
+    opacity: 1;
+}
+.nav ul li:hover .top2{
+    transform:translateY(-4px);
+    transform:translateX(-6px);
+    opacity: 1;
+}
+.nav ul li:hover .bottom2{
+    transform:translateY(4px);
+    transform:translateX(6px);
+    opacity: 1;
+}
+.nav ul li:hover .top3{
+    transform:translateY(-4px);
+    transform:translateX(-6px);
+    opacity: 1;
+}
+.nav ul li:hover .bottom3{
+    transform:translateY(4px);
+    transform:translateX(6px);
+    opacity: 1;
+}
+.nav ul li:hover .top4{
+    transform:translateY(-4px);
+    transform:translateX(-6px);
+    opacity: 1;
+}
+.nav ul li:hover .bottom4{
+    transform:translateY(4px);
+    transform:translateX(6px);
+    opacity: 1;
+}
+.nav ul li:hover .top5{
+    transform:translateY(-4px);
+    transform:translateX(-6px);
+    opacity: 1;
+}
+.nav ul li:hover .bottom5{
+    transform:translateY(4px);
+    transform:translateX(6px);
+    opacity: 1;
+}
+
+
+
+
+
+

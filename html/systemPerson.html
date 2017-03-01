@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="../css/ext-all.css">
+  <!-- font-awesome 字体库,现今最流行-->
+  <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+  <!--fc-all.css  根据具体需求写的样式-->
+  <link rel="stylesheet" href="../css/fc-all.css">
+  <!-- ClearButton.css  清楚文本css样式ku-->
+  <link rel="stylesheet" href="../css/ClearButton.css">
+  <!--ext本身的加载速度慢,所以后续需要用大jq里的方法-->
+  <script src="../js/jquery-1.8.3.min.js"></script>
+  <!--自封装的js库-->
+  <script src="../js/basicParameter.js"></script>
+  <!--ext本身的js库-->
+  <script src="../js/ext-all.js"></script>
+  <!--自己封装的js主键库-->
+  <script src="../js/basicExtModule.js"></script>
+  <!--分页栏js库-->
+  <script src="../js/PagingToolBar.js"></script>
+  <!--工具库-->
+  <script src="../js/tools.js"></script>
+  <!--  清楚文本js库-->
+  <script src="../js/ClearButton.js"></script>
+</head>
+<body>
+<div class="xn-body">
+  <div class="xn_nowpath"></div>
+  <div class="xn_section_wrap">
+    <div id="searchBox" class="xn_search_form">
+      <button class="xn_btn xn_btn_primary" style="float: right;margin:10px" onclick="adminWin()"><i class="icon-plus"></i>添加</button>
+    </div>
+  </div>
+</div>
+<div class="xn_section_wrap"style="width:97%;margin-left:20px">
+  <div class="xn_section_title">
+    <span class="icon_wrap"><i class="icon-th"></i></span>
+    <span class="xn_title_name">系统人员列表</span>
+  </div>
+  <div id="gridBox"></div>
+</div>
+</body>
+<script type="text/javascript">
+  var GLOBAL=GLOBAL||{};
+  Ext.onReady(function () {
+    GLOBAL.formBox=Ext.create("Ext.form.Panel", {
+      renderTo: "searchBox",
+      layout: "hbox",
+      items: [
+        new Ext.custom.middletextfield({
+          emptyText: "模糊查找，姓名",
+          itemId: "userName",
+          margin: 10
+        }), {
+          xtype: "button",
+          margin: 10,
+          text: "查找",
+          width: 100,
+          height: 34,
+          handler: function () {
+            getAdminList()
+          }
+        }
+      ]
+    });
+
+
+    //创建仓库
+    GLOBAL.dataStore=Ext.create("Ext.data.Store",{
+      fields:["userName","tokenId","turename","phone","power","createAt","upDateAt"]
+    });
+    //分页蓝
+    GLOBAL.pageBar=Ext.create("PagingToolBar",{
+      //g表格里的所有数据，pageFirst当前页第一条数据的下标，pageSize每页显示的数据条数
+      onChange: function (g,pageFirst,pageSize) {
+        var pageStart=parseInt(pageFirst/pageSize+1);
+        getAdminList(pageStart,pageFirst);
+//        console.log(pageFirst);
+      }
+    });
+    GLOBAL.girdBox=Ext.create("Ext.grid.Panel",{
+      renderTo:"gridBox",
+      store:GLOBAL.dataStore,
+      minHeight:BPR.gridMinHeight,
+      bbar:GLOBAL.pageBar,
+      columns:[
+        {"header":"用户名",width:150,dataIndex:"userName"},
+        {"header":"姓名",width:150,dataIndex:"turename",flex:1},
+        {"header":"后台权限",width:150,dataIndex:"power"},
+        {"header":"手机",width:150,dataIndex:"phone"},
+        {"header":"编辑日期",width:150,dataIndex:"createAt"},
+        {"header":"操作",width:150,dataIndex:"tokenId",
+          renderer: function (value,sellmeta,record) {
+            //value单元格的值
+            //sellmeta对应单元格的信息
+            //record整行记录
+//            console.log(record);
+            return"<a class='xn_tablea' onclick='adminWin("+value+")'>编辑<\a>"+
+                  "<a class='xn_tablea' onclick='deleteAdmin("+value+")'>删除<\a>"
+          }
+        }
+      ]
+    });
+    getAdminList();
+    GLOBAL.powerStore=Ext.create("Ext.data.Store",{
+      fields:["power","powerCode"]
+    });
+    //获取权限
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=getpower",
+      type:"get",
+      async:false,
+      dataType:"json",
+      data:""
+    }).done(function (result) {
+//      console.log(result);
+      GLOBAL.powerStore.loadData(result.data)
+    })
+  });
+  //获取系统人员列表
+  function getAdminList(pageStart,pageFirst){
+    var data={
+      searchText:GLOBAL.formBox.down("#userName").getValue(),
+        pageStart:pageStart?pageStart:1
+    };
+    $.ajax({
+      url:"/Handler/AdminHandler.ashx?action=show",
+      type:"get",
+      dataType:"json",
+      async:false,
+      data:data
+    }).done(function (result) {
+//      console.log(result);
+      GLOBAL.pageBar.setPageSize(result.data.pageSize);//3条
+      GLOBAL.pageBar.loadPage(pageFirst?pageFirst:0,result.data.count);
+      GLOBAL.dataStore.loadData(result.data.list)
+    })
+  }
+  //用户添加
+  function adminWin(userId){
+    GLOBAL.addminWin=new Ext.custom.basicWindow({
+      title:"管理员添加",
+      width:500,
+      height:320,
+      items:[
+        new Ext.custom.middletextfield({
+          itemId:"userName",
+          fieldLabel:"用户名",
+          beforeLabelTextTpl:required,
+          margin:"20 10 10 50"
+        }),
+        new Ext.custom.middletextfield({
+          itemId:"name",
+          fieldLabel:"姓名",
+          beforeLabelTextTpl:required,
+          margin:"20 10 10 50"
+        }),
+        new Ext.custom.middletextfield({
+          itemId:"phone",
+          fieldLabel:"手机号",
+          beforeLabelTextTpl:required,
+          margin:"20 10 10 50"
+        }),
+        new Ext.custom.basicCombo({
+          fieldLabel:"权限选择",
+          valueField:"powerCode",
+          displayField:"power",
+          store:GLOBAL.powerStore,
+          itemId:"power",
+          margin:"20 10 10 50",
+          width:370
+        }),{
+          xtype:"button",
+          width:100,
+          height:34,
+          margin:"0 30 0 120",
+          text:"确定",
+          style:"background:green",
+          handler: function () {
+            //添加，编辑管理员
+            var url = userId?"/Handler/AdminHandler.ashx?action=update":"/Handler/AdminLoginAndRegHandler.ashx?action=add";
+            $.ajax({
+              url:url,
+              type:"post",
+              async:false,
+              dataType:"json",
+              data:{
+                userName:GLOBAL.addminWin.down("#userName").getValue(),
+                turename:GLOBAL.addminWin.down("#name").getValue(),
+                phone:GLOBAL.addminWin.down("#phone").getValue(),
+                power:GLOBAL.addminWin.down("#power").getRawValue(),//当选中后，对应的值
+                password:GLOBAL.userId?"":"123456",
+                tokenId:userId   //  GLOBAL.userId是全局变量，赋过值后，就一直都是那个值
+              }
+            }).done(function (result) {
+              console.log(result);
+              alert(result.success);
+              getAdminList();
+            });
+            GLOBAL.addminWin.hide()
+          }
+        },{
+          xtype:"button",
+          width:100,
+          height:34,
+          text:"取消",
+          handler: function () {
+            GLOBAL.addminWin.hide()
+          }
+        }
+      ]
+    }).show();
+    if(userId){
+      var adminData=GLOBAL.girdBox.getSelectionModel().getSelection()[0].data;
+      console.log(adminData);
+      GLOBAL.addminWin.down("#userName").setValue(adminData.userName);
+      GLOBAL.addminWin.down("#name").setValue(adminData.turename);
+      GLOBAL.addminWin.down("#phone").setValue(adminData.phone);
+      GLOBAL.addminWin.down("#power").setRawValue(adminData.power);
+      GLOBAL.userId = adminData.tokenId
+    }
+  }
+  //删除管理员
+  function deleteAdmin(userId){
+    var data={
+      tokenId:userId
+    };
+    $.ajax({
+      url:"/Handler/AdminHandler.ashx?action=delete",
+      type:"get",
+      dataType:"json",
+      async:false,
+      data:data
+    }).done(function (result) {
+//      console.log(result);
+      Ext.Msg.alert("提示",result.success);
+      getAdminList();
+    })
+  }
+</script>
+</html>

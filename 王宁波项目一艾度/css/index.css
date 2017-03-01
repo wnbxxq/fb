@@ -1,0 +1,579 @@
+*{
+    margin: 0 ;
+    padding: 0;
+}
+body{
+    font-family: "Microsoft YaHei";
+}
+.banner-box{
+    width: 100%;
+    min-width: 1200px;
+    height:500px;
+    overflow: hidden;
+    position: relative;
+}
+.banner{
+    width: 100%;
+    height:500px;
+    overflow: hidden;
+    position:relative;
+}
+.img1{
+    height: 500px;
+    position:absolute;
+    top:39%;
+    left: 50%;
+    transform:translate(-50% ,-50%);
+}
+.banner-box ul{
+    width:100px;
+    height:15px;
+    list-style: none;
+    position: absolute;
+    bottom:20px;
+    left:50%
+}
+.banner-box ul li{
+    float: left;
+    margin-left: 15px;
+    width:13px;
+    height:13px;
+    border-radius:13px;
+    background:#CCCCCC;
+}
+.left{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    position: absolute;
+    top:42%;
+    z-index: 99;
+    left: 30px;
+    background:#CCCCCC;
+    line-height: 40px;
+    text-align: center;
+    font-size: 30px;
+    color:#58BFC8;
+    cursor: pointer;
+    font-weight: 900;
+}
+.right{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    position: absolute;
+    top:42%;
+    z-index: 99;
+    right: 30px;
+    background:#CCCCCC;
+    line-height: 40px;
+    text-align: center;
+    font-size: 30px;
+    color:#58BFC8;
+    cursor: pointer;
+    font-weight: 900;
+}
+.left:hover{
+    color: white;
+    background:black;
+    animation:su-pudding 0.5s ease 0s;
+}
+.right:hover{
+    color: white;
+    background:black;
+    animation:su-pudding 0.5s ease 0s;
+}
+@keyframes su-pudding {
+    0% {
+        transform: scale(1.2, 0.8);
+    }
+    1% {transform: scale(1.18, 0.82);  }
+    2% {transform: scale(1.16, 0.84);  }
+    3% {transform: scale(1.13, 0.87);  }
+    4% {transform: scale(1.1, 0.9);  }
+    5% {transform: scale(1.07, 0.93);  }
+    6% {transform: scale(1.04, 0.96);  }
+    7% {transform: scale(1.01, 0.99);  }
+    8% {transform: scale(0.99, 1.01);  }
+    9% {transform: scale(0.97, 1.03);  }
+    10% {transform: scale(0.95, 1.05);  }
+    11% {transform: scale(0.94, 1.06);  }
+    12% {transform: scale(0.93, 1.07);  }
+    13% {transform: scale(0.93, 1.07);  }
+    14% {transform: scale(0.93, 1.07);  }
+    15% {transform: scale(0.93, 1.07);  }
+    16% {transform: scale(0.94, 1.06);  }
+    17% {transform: scale(0.94, 1.06);  }
+    18% {transform: scale(0.95, 1.05);  }
+    19% {transform: scale(0.96, 1.04);  }
+    20% {transform: scale(0.98, 1.02);  }
+    21% {transform: scale(0.99, 1.01);  }
+    22% {transform: scale(1, 1);  }
+    23% {transform: scale(1, 1);  }
+    24% {transform: scale(1.01, 0.99);  }
+    25% {transform: scale(1.02, 0.98);  }
+    26% {transform: scale(1.02, 0.98);  }
+    27% {transform: scale(1.02, 0.98);  }
+    28% {transform: scale(1.03, 0.97);  }
+    29% {transform: scale(1.03, 0.97);  }
+    30% {transform: scale(1.02, 0.98);  }
+    31% {transform: scale(1.02, 0.98);  }
+    32% {transform: scale(1.02, 0.98);  }
+    33% {transform: scale(1.02, 0.98);  }
+    34% {transform: scale(1.01, 0.99);  }
+    35% {transform: scale(1.01, 0.99);  }
+    36% {transform: scale(1.01, 0.99);  }
+    37% {transform: scale(1, 1);  }
+    38% {transform: scale(1, 1);  }
+    39% {transform: scale(1, 1);  }
+    40% {transform: scale(0.99, 1.01);  }
+    41% {transform: scale(0.99, 1.01);  }
+    42% {transform: scale(0.99, 1.01);  }
+    43% {transform: scale(0.99, 1.01);  }
+    44% {transform: scale(0.99, 1.01);  }
+    45% {transform: scale(0.99, 1.01);  }
+    46% {transform: scale(0.99, 1.01);  }
+    47% {transform: scale(0.99, 1.01);  }
+    48% {transform: scale(0.99, 1.01);  }
+    49% {transform: scale(1, 1);}
+}
+
+.first-box{
+    width: 100%;
+    height: 370px;
+}
+.first{
+    width: 1200px;
+    height: 370px;
+    margin:  0 auto;
+    text-align: center;
+}
+.rab1{
+    padding-top: 20px;
+}
+.rab1-p{
+    font-size: 14px;
+    color:#7F7F7F;
+}
+.first-picter{
+    width: 1200px;
+    height: 202px;
+    margin: 0 auto;
+}
+.picter{
+    width:271px;
+    height: 202px;
+    float: left;
+    margin-left:28px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.picter ul li{
+    width: 271px;
+    height: 30px;
+    position: absolute;
+    bottom:0px;
+    background: black;
+   opacity: 0.7;
+    color: white;
+    list-style: none;
+    line-height: 30px;
+    font-size: 14px;
+}
+.picter img{
+    width: 100%;
+    height: 100%;
+    transition:1s;
+}
+.picter:hover img{
+    transform: scale(1.3);
+}
+.tiao-box{
+    width: 100%;
+    height: 60px;
+    background: #60D0DB;
+}
+.tiao{
+    width: 720px;
+    height: 60px;
+    margin: 0 auto;
+}
+.tiao h2{
+    color:white;
+    line-height: 60px;
+}
+
+
+.second-box{
+    width: 100%;
+    min-width: 1200px;
+}
+.second{
+    width: 1200px;
+    height: 144px;
+    margin: 20px auto;
+    text-align: center;
+    position: relative;
+}
+.second img{
+    position: absolute;
+    left:470px;
+
+}
+.second p{
+    width: 744px;
+    color:#7F7F7F;
+    font-size:14px;
+    position: absolute;
+    left: 260px;
+    top: 80px;
+    line-height:25px;
+    /*font-family: "Microsoft YaHei";*/
+}
+.tupian-box{
+    width: 1200px;
+    margin: 30px auto;
+    overflow: hidden;
+}
+.tupian{
+    width: 285px;
+    height: 210px;
+    float: left;
+    margin-left: 15px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+.tupian1{
+    width: 285px;
+    height:210px;
+    opacity: 0.8;
+    background: black;
+    text-align: center;
+    color: white;
+    transition:0.5s;
+    margin-top:10px;
+}
+.tupian1 h3{
+    margin-top: 80px;
+    margin-left: 10px;
+    float: left;
+}
+.tupian1 h4{
+    margin-top: 30px;
+    margin-left: 10px;
+    float: left;
+}
+.tupian:hover .tupian1{
+    margin-top: -210px;
+}
+.tupian-box img{
+    width: 285px;
+    height: 210px;
+}
+.success-box{
+    width: 1200px;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+}
+.success,.new{
+    position: absolute;
+    left:515px;
+    top:45px;
+    width: 159px;
+    height: 36px;
+    border-radius: 30px;
+    border: 2px solid #5EA927;
+    color: #5EA927;
+    text-align: center;
+    line-height: 36px;
+    font-size: 15px;
+}
+.success:hover{
+    color: white;
+    background: #5EA927;
+}
+.copy-box{
+    margin: 0 auto;
+    background:url("../images/be.jpg");
+    width: 100%;
+    height: 600px;
+}
+.copy{
+    width: 1100px;
+    height: 600px;
+    margin:  0 auto;
+    /*background: pink;*/
+    text-align: center;
+}
+.copy h1{
+    font-family: "Microsoft YaHei";
+    font-size:40px;
+    padding-top: 30px;
+    color: white;
+}
+.copy h3{
+    font-size:16px;
+    color: white;
+}
+.copy-left{
+    padding-top: 40px;
+    float: left;
+}
+.copy-right{
+    position: relative;
+    margin-top: 40px;
+    width: 480px;
+    height: 400px;
+    float: right;
+    margin-right:55px;
+    /*background: pink;*/
+}
+.copy-right h2{
+    color: white;
+    text-align: left;
+}
+.line{
+    background:url("../images/nav_border.jpg");
+    height: 2px;
+    width: 480px;
+}
+.light{
+    position: absolute;
+    top:60px;
+    left:4px;
+    width: 96px;
+    height: 96px;
+    border-radius: 50px;
+    border: 2px solid #9B0583;
+}
+.light-box{
+    height: 150px;
+    width: 480px;
+    border-bottom:1px dashed white;
+}
+.light-box p{
+    text-align: left;
+    margin-top: 30px;
+    float: right;
+    color: white;
+    font-size: 14px;
+    width: 340px;
+}
+.light-bottom{
+    margin-top: 40px;
+    text-align: left;
+    color: white;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+}
+.light-bottom p:hover{
+    color: #0096DD;
+    cursor: pointer;
+}
+.third-box{
+    margin-top:10px;
+    background:url("../images/thied.jpeg")no-repeat center;
+    height: 707px;
+}
+.third{
+    position: relative;
+    width: 1200px;
+    height: 707px;
+    margin: 0 auto;
+}
+.rab3{
+    position: absolute;
+    top:78px;
+    left:473px;;
+}
+.second p{
+    position: absolute;
+    top:96px;
+    font-size: 14px;
+    color:#7F7F7F;
+}
+.p1{
+    position: absolute;
+    font-size: 14px;
+    color:#7F7F7F;
+    top: 160px;
+    left: 433px;
+}
+.computer,.airplan,.photo,.bag{
+    width: 245px;
+    height: 268px;
+    position: absolute;
+    top:255px;
+    left: 30px;
+    text-align: center;
+}
+
+.computer img{
+    transition:1s;
+}
+.computer img:hover{
+    transform: scale(1.3);
+}
+.third h2{
+    font-size:22px;
+    margin-top: 10px;
+    font-family: "黑体";
+}
+.p2 {
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 23px;
+    color: #7F7F7F;
+}
+.airplan{
+    left:348px;
+}
+.airplan img{
+    transition:1s;
+}
+.airplan img:hover{
+    transform:rotateY(180deg);
+}
+.photo{
+   left:655px;
+}
+.photo img:hover{
+    transform:scale(0.3);
+}
+.photo img{
+    transition: 1s;
+}
+.bag{
+    left:953px;
+}
+.bag img{
+    transition:1s;
+    transform-origin: 50% 50%;
+}
+.bag img:hover{
+    transform:rotate(360deg);
+
+}
+.solve-box{
+    position:absolute;
+    width: 142px;
+    height: 38px;
+    text-align:center;
+    line-height: 38px;
+    font-size:15px;
+    border: 2px solid #CCCCCC;
+    color:#9999A6;
+    bottom:50px;
+    left:496px;
+}
+.solve-box:hover{
+  background:#CCCCCC ;
+}
+
+.forth-box{
+    width: 100%;
+    min-width: 1200px;
+}
+.forth{
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+.rab4{
+    position: absolute;
+    top: 20px;
+    left:440px;
+}
+.forth-p{
+    position: absolute;
+    top:98px;
+    left: 300px;
+    color: rgb(34, 34, 34);
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: 500;
+}
+.forth-write{
+    overflow: hidden;
+    width: 1200px;
+    height:670px;
+    margin: 140px auto 0;
+    background: #E0F3F6;
+    position: relative;
+}
+.write1,.write2,.write3,.write4,.write5{
+    position: absolute;
+    top:60px;
+    left: 40px;
+    /*background: pink;*/
+    width: 500px;
+    height: 110px;
+    border-bottom: 1px dashed #AAAAAA;
+    color:#666666;
+    font-family: 'Microsoft YaHei';
+}
+.write1-h4{
+  font-size: 14px;
+}
+.write1-h6{
+    margin-top: 10px;
+}
+.write1-p{
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 400;
+}
+.write2{
+    top:187px;
+}
+.write3{
+    top:315px;
+}
+.write4{
+    top: 443px;
+}
+.write5{
+    left:662px;
+    top: 60px;
+}
+.new{
+    top: 605px;
+}
+.new:hover{
+    color: white;
+    background: #5EA927;
+}
+.fifth-box{
+    width: 100%;
+    min-width: 1200px;
+}
+.fifth{
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+.rab5{
+    margin-top: 30px;
+}
+.rab5-p{
+    font-size: 14px;
+    color: #7F7F7F;
+}
+.biao{
+    margin-top: 30px;
+}
+.return{
+    display: none;
+    cursor: pointer;
+    position: fixed;
+    width: 150px;
+    height: 200px;
+    bottom: 40px;
+    right: 0px;
+    background:url("../images/rocket_button_up.png")no-repeat top;
+}

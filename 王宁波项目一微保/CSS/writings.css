@@ -1,0 +1,437 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.head{
+	width: 100%;
+	position: relative;
+}
+.head_top{
+	width: 100%;
+	background: #E1E1E1;
+}
+.head_top .inner{
+	width: 1200px;
+	height: 32px;
+	margin: 0 auto;
+	color: #666666;
+	font-size: 12px;
+	line-height: 30px;
+}
+p{
+	display: block;
+}
+.head_top .inner .hot_line{
+	float: left;
+}
+.head_top .inner .welcome{
+	float: right;
+}
+.head_middle{
+	width: 100%;
+	padding-top: 13px;
+	background: url(../images/tou_bai.png) repeat;
+	position: fixed;
+	z-index: 999;
+}
+.clearfix{
+	width: 1200px;
+	height: 56px;
+	margin: 0 auto;
+}
+.clearfix_logo{
+	float: left;
+	width: 313px;
+	height: 45px;
+}
+.clearfix_nav{
+	width: 642px;
+	height: 56px;
+	float: left;
+	margin-left: 110px;
+}
+.clearfix_nav .clearfix_nav_h1{
+	float: left;
+	font-size: 18px;
+	padding: 0 25px;
+	color: #333333;
+	font-weight: 300;
+	line-height: 45px;
+	cursor: pointer;
+}
+.clearfix_nav .clearfix_nav_h1 .p1{
+	height: 55px;
+}
+.p1{
+	cursor: pointer;
+	height: 55px;
+	color: #333333;
+}
+.clearfix_nav .clearfix_nav_h1 .p1:hover{
+	color: #E66F0E;
+	border-bottom: 2px solid #E66F0E;
+}
+.p1_now{
+	color: #E66F0E;
+	border-bottom: 2px solid #E66F0E;
+}
+.entrance{
+    float: right;
+    margin: 8px 0 0 30px;
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 33px;
+    font-size: 14px;
+    color: #fff;
+    background: url(../images/ico_02.png) no-repeat;
+    cursor: pointer;
+}
+.yiru_xiala{
+	width: 100%;
+	position: absolute;
+	height: 48px;
+	top: 70px;
+	left: 0;
+	display: none;
+	background: url(../images/tou_blue80.png) repeat;
+}
+ul{
+	list-style: none;
+}
+.yiru_xiala_ul{
+	width: 430px;
+	position: absolute;
+	left: 50%;
+	margin-left: -210px;
+	font-size: 15px;
+	line-height: 48px;
+}
+.yiru_xiala_ul1{
+	width: 430px;
+	position: absolute;
+	left: 50%;
+	margin-left: 135px;
+	font-size: 15px;
+	line-height: 48px;
+}
+.yiru_xiala_li{
+	float: left;
+	color: #FFFFFF;
+	margin-right: 37px;
+	cursor: pointer;
+}
+.yiru_xiala_li1{
+	float: left;
+	color: #FFFFFF;
+	margin-right: 37px;
+	cursor: pointer;
+}
+.yiru_xiala_li:hover{
+	color: #E66F0E;
+}
+.yiru_xiala_li1:hover{
+	color: #E66F0E;
+}
+.yiru:hover .yiru_xiala{
+	display: block;
+}
+.bird_bj{
+	background: #F1F2F6;
+	width: 100%;
+	overflow: hidden;
+}
+.bird_dong{
+	width: 1100px;
+	margin: 0 auto;
+	overflow: hidden;
+	background: #FFFFFF;
+}
+.bird_dong .bird_dong_h1{
+	text-align: center;
+    font-size: 54px;
+    color: #311759;
+    font-weight: 400;
+    margin-top: 124px;
+}
+.bird_dong_dian{
+	width: 1100px;
+	height: 8px;
+	margin-top: 10px;
+	background: url(../images/three_points01.png) no-repeat center;
+}
+.bird_liebiao{
+	width: 780px;
+	height: 60px;
+	position: relative;
+	margin: 0 auto;
+}
+.bird_liebiao_size{
+	width: 600px;
+	height: 32px;
+	float: left;
+	color: #311759;
+	font-size: 30px; 	
+}
+.pen{
+	width: 61px;
+	height: 58px;
+	position: absolute;
+	right: 0;
+	bottom: -5px;
+	cursor: pointer;
+	/*animation: pen_n 2s ease 1;*/
+	background:#FFFFFF url(../images/pen_article.png) no-repeat 0px 0px;
+}
+.pen:hover{
+	background-position: -61px 0;
+}
+.pen_now{
+	animation: pen_n 1s ease 0s 1 ;
+}
+@keyframes pen_n{
+	0%{transform: translateX(-650px);}
+	100%{transform: translateX(-0px)}
+}
+.line{
+	width: 725px;
+	height: 2px;
+	position: absolute;
+	bottom: 0;
+	background: url(../images/pen_line_long.png) no-repeat 0px 0px;
+}
+.line_now{
+	animation: line_n 1s ease 0s 1;
+}
+@keyframes line_n{
+	0%{width: 100px;}
+	100%{width: 725px;}
+}
+.sj_rw{
+	width: 780px;
+	height: 40px;
+	margin-bottom: 50px;
+	margin: 0 auto;
+}
+.sj,.rw{
+	width: 100px;
+	height: 50px;
+	float: left;
+	line-height: 40px;
+	color: #555555;
+}
+.tu{
+	width: 780px;
+	padding-bottom: 70px;
+	margin: 0 auto;
+}
+.wenzhang{
+	width: 780px;
+	text-align: left;
+	margin: 0 auto 250px;
+	font: 100 22px/30px "微软雅黑";
+}
+.dibu{
+	width: 780px;
+	position: relative;
+	margin: 0 auto 200px;
+}
+.suiji{
+	width: 73px;
+	height: 73px;
+	margin: 0 auto 50px;
+	background: url(../images/article_iflike.png) no-repeat 0px 0px;
+	transition: all .5s ease 0s;
+}
+.suiji_now1{
+	animation: suijishu 1.5s ease 0s 1 ;
+}
+.suiji_now{
+	background-position: 0px -73px;
+}
+@keyframes suijishu{
+0% {
+    transform: scale(1.2, 0.8);
+}
+1% {
+    transform: scale(1.18, 0.82);
+}
+2% {
+    transform: scale(1.16, 0.84);
+}
+3% {
+    transform: scale(1.13, 0.87);
+}
+4% {
+    transform: scale(1.1, 0.9);
+}
+5% {
+    transform: scale(1.07, 0.93);
+}
+6% {
+    transform: scale(1.04, 0.96);
+}
+7% {
+    transform: scale(1.01, 0.99);
+}
+8% {
+    transform: scale(0.99, 1.01);
+}
+9% {
+    transform: scale(0.97, 1.03);
+}
+10% {
+    transform: scale(0.95, 1.05);
+}
+11% {
+    transform: scale(0.94, 1.06);
+}
+12% {
+    transform: scale(0.93, 1.07);
+}
+13% {
+    transform: scale(0.93, 1.07);
+}
+14% {
+    transform: scale(0.93, 1.07);
+}
+15% {
+    transform: scale(0.93, 1.07);
+}
+16% {
+    transform: scale(0.94, 1.06);
+}
+17% {
+    transform: scale(0.94, 1.06);
+}
+18% {
+    transform: scale(0.95, 1.05);
+}
+19% {
+    transform: scale(0.96, 1.04);
+}
+20% {
+    transform: scale(0.98, 1.02);
+}
+21% {
+    transform: scale(0.99, 1.01);
+}
+22% {
+    transform: scale(1, 1);
+}
+23% {
+    transform: scale(1, 1);
+}
+24% {
+    transform: scale(1.01, 0.99);
+}
+25% {
+    transform: scale(1.02, 0.98);
+}
+26% {
+    transform: scale(1.02, 0.98);
+}
+27% {
+    transform: scale(1.02, 0.98);
+}
+28% {
+    transform: scale(1.03, 0.97);
+}
+29% {
+    transform: scale(1.03, 0.97);
+}
+30% {
+    transform: scale(1.02, 0.98);
+}
+31% {
+    transform: scale(1.02, 0.98);
+}
+32% {
+    transform: scale(1.02, 0.98);
+}
+33% {
+    transform: scale(1.02, 0.98);
+}
+34% {
+    transform: scale(1.01, 0.99);
+}
+35% {
+    transform: scale(1.01, 0.99);
+}
+36% {
+    transform: scale(1.01, 0.99);
+}
+37% {
+    transform: scale(1, 1);
+}
+38% {
+    transform: scale(1, 1);
+}
+39% {
+    transform: scale(1, 1);
+}
+40% {
+    transform: scale(0.99, 1.01);
+}
+41% {
+    transform: scale(0.99, 1.01);
+}
+42% {
+    transform: scale(0.99, 1.01);
+}
+43% {
+    transform: scale(0.99, 1.01);
+}
+44% {
+    transform: scale(0.99, 1.01);
+}
+45% {
+    transform: scale(0.99, 1.01);
+}
+46% {
+    transform: scale(0.99, 1.01);
+}
+47% {
+    transform: scale(0.99, 1.01);
+}
+48% {
+    transform: scale(0.99, 1.01);
+}
+49% {
+    transform: scale(1, 1);
+}
+}
+.chantiao{
+	height: 35px;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: 43px;
+	margin-top: 18px;
+	line-height: 35px;
+	color: #FFFFFF;
+	font-size: 15px;
+	overflow: hidden;
+	background: url(../images/article_iflike_nomberbg.png) no-repeat 0px 0px;
+}
+.wenzi{
+	width: 260px;
+	height: 82px;
+	margin: 0 auto;
+	background: #F1F2F6;
+	text-align: center;
+	font-size: 20px;
+	line-height: 72px;
+	color: #311859;
+}
+.wenzhang_nr{
+	text-indent: 2em;
+	font-size: 14px;
+	line-height: 24px;
+	color: #666666;
+}
+.tit{
+	font-size: 15px;
+	line-height: 24px;
+	font-weight: bold;
+}

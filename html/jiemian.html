@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="../css/jiemian.css"/>
+    <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css"/>
+  <script src="../js/jquery-1.8.3.min.js"></script>
+  <script src="../js/canvas_dote.js"></script>
+</head>
+<body>
+<canvas></canvas>
+<div class="warp">
+  <div class="conter">
+    <div class="logo">
+        <!--<img src="../Images/back_logo.png" alt=""/>-->
+      <p style="font-size: 25px;color:white;width: 400px;text-align: center">恒天在线教育后台管理系统</p>
+    </div>
+      <div class="plaseword">
+          <i class="icon-user"></i>
+          <input type="text"id="loginId" placeholder="用户民"/>
+      </div>
+      <div class="plaseword">
+          <i class="icon-lock"></i>
+          <input type="password" id="userPwd" placeholder="密码"/>
+      </div>
+      <div class="yan">
+          <i class="icon-lock"></i>
+          <input type="text" placeholder="验证码" style="width: 320px;"/>
+      </div>
+      <img src="../Images/validatecode.png" alt="" class="img1"/>
+      <div class="wang">忘记密码?</div>
+      <div class="deng">登录</div>
+  </div>
+</div>
+</body>
+<script>
+  $(function(){
+    $(".deng").click(function(){
+      login();
+    })
+    $(document).keydown(function(ev){
+      var oEvent=ev||event;
+      if(oEvent.keyCode==13){
+        login();
+      }
+    })
+  })
+  function login(){
+    var userName=$("#loginId").val(),passWord=$("#userPwd").val();
+    $.ajax({
+      url:"/Handler/AdminLoginAndRegHandler.ashx?action=login",
+      type:"post",
+      dataType:"json",
+      data:{
+        //userName      接口文档所给出的字段，也是后台所需要的字段
+          userName:userName,
+        //password       接口文档所给出的字段，也是后台所需要的字段
+          password:passWord,
+      }
+  }).done(function(result){     //done    函数执行完成的时候所走的回调函数
+      //result          是一个参数
+//      alert(result.success)
+      if(result.success){    //result.success        对获取到的数据是否真正成功进行判断
+        window.location="houtai2.html";
+      }
+    })
+
+  }
+</script>
+</html>

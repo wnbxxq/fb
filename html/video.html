@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+  <link rel="stylesheet" href="../css/ext-all.css">
+  <!-- font-awesome 字体库,现今最流行-->
+  <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+  <!--fc-all.css  根据具体需求写的样式-->
+  <link rel="stylesheet" href="../css/fc-all.css">
+  <!-- ClearButton.css  清楚文本css样式ku-->
+  <link rel="stylesheet" href="../css/ClearButton.css">
+  <!--ext本身的加载速度慢,所以后续需要用大jq里的方法-->
+  <script src="../js/jquery-1.8.3.min.js"></script>
+  <!--自封装的js库-->
+  <script src="../js/basicParameter.js"></script>
+  <!--ext本身的js库-->
+  <script src="../js/ext-all.js"></script>
+  <!--自己封装的js主键库-->
+  <script src="../js/basicExtModule.js"></script>
+  <!--分页栏js库-->
+  <script src="../js/PagingToolBar.js"></script>
+  <!--工具库-->
+  <script src="../js/tools.js"></script>
+  <!--  清楚文本js库-->
+  <script src="../js/ClearButton.js"></script>
+</head>
+<body class="xn_body">
+<div class="xn_nowpath"></div>
+<div class="xn_section_wrap">
+<div class="xn_search_form" id="videoSearch">
+  <button class="xn_btn xn_btn_primary" style="float:right;margin:10px;"onclick="videoWin()"><i class="icon-plus"></i>添加 </button>
+</div>
+</div>
+
+<div class="xn_section_wrap">
+  <div class="xn_section_title">   <!-- xn_section_title  定义表格标题-->
+    <!--icon_wrap  图标样式    icon-th 前面键盘小图标-->
+    <span class="icon_wrap"><i class="icon-th"></i></span>
+    <span class="xn_title_name">视频列表</span>
+  </div>
+  <div id="videoBox"></div>
+</div>
+</body>
+<script>
+  var GLOBAL=GLOBAL||{}; //GLOBAL 意义在于定义一个全局变量
+  Ext.onReady(function(){
+    //搜索框
+   GLOBAL.videoForm=Ext.create("Ext.form.Panel",{
+      renderTo:"videoSearch",
+      layout:"hbox",
+      items:[
+        new Ext.custom.textfield({
+          itemId:"videoSearch",
+          height:34,
+          emptyText:"模糊查找，视频名称",
+          margin:10,
+        }),{
+          xtype:"button",
+          width:100,
+          height:34,
+          style:"background:green",
+          text:"查询",
+          margin:10,
+          handler:function(result){
+//            console.log(result);
+            getVideoList()
+          }
+        }
+      ]
+    })
+
+   //video 列表
+    //创建视频仓库
+    GLOBAL.videoStore=Ext.create("Ext.data.Store",{
+      fields:["Vname","Vstate","ID","Vtime","createAt","Vurl"]
+    })
+    //GLOBAL.videoBar  创建分页蓝
+    GLOBAL.videoBar=Ext.create("PagingToolBar",{
+      onChange:function(g,PageFirst,Pagesize){     //onchange  当点击分页的时候执行响应的函数
+//        console.log(this);
+//        console.log(arguments);
+        var pageStart=PageFirst/Pagesize+1;
+        getVideoList(pageStart,PageFirst)
+      }
+    })
+    GLOBAL.girdBox=Ext.create("Ext.grid.Panel",{
+      minHeight:BPR.gridMinHeight,
+      id:"videoId",
+      store:GLOBAL.videoStore,
+      bbar:GLOBAL.videoBar,
+      renderTo:"videoBox",
+      columns:[
+      {header:"视频名称",width:150,dataIndex:"Vname"},
+      {header:"绑定课程",width:150,dataIndex:"Vstate",flex:1},
+      {header:"视频时长",width:150,dataIndex:"Vtime"},
+      {header:"上传日期",width:150,dataIndex:"createAt"},
+      {header:"操作",width:200,dataIndex:"ID",
+        renderer:function(value,sellmeta,record){
+          if(record.data.Vstate==""){
+            return"<a class='xn_tablea'onclick='videoWin("+value+")'>编辑<\a>"+
+              "<a class='xn_tablea'onclick='videoDel("+value+")'>删除<\a>"
+          }else{
+            return"<a class='xn_tablea'onclick='videoWin("+value+")'>编辑<\a>"
+          }
+        }
+      }
+    ]
+    });
+    getVideoList();
+  })
+
+function getVideoList(pageStart,pageFirst){
+  var data={
+    searchText:GLOBAL.videoForm.down("#videoSearch").getValue(),
+    pageStart:pageStart?pageStart:1
+  };
+  $.ajax({
+    url:"/Handler/VideoHandler.ashx?action=showlist",
+    type:"post",
+    dataType:"json",
+    async:false,
+    data:data,
+  }).done(function(result){
+    //每页显示的条数
+    GLOBAL.videoBar.setPageSize(result.data.pageSize);
+    //每一页第一条数据的下标    数据总数
+    GLOBAL.videoBar.loadPage(pageFirst?pageFirst:0,result.data.count);
+    //往数据仓库里面加载数据列表
+    GLOBAL.videoStore.loadData(result.data.list)
+  })
+}
+  function videoWin(videoId){
+    GLOBAL.videoWin=new Ext.custom.basicWindow({
+      title:"视频添加",
+      width:500,
+      height:320,
+      items: [{
+        layout: "hbox",
+        items: [
+          new Ext.custom.middletextfield({
+            itemId: "videoSrc",
+            fieldLabel: "视频",
+            emptyText: "上传视频",
+            beforeLabelTextTpl: required,
+            margin: "40 10 10 40"
+          }), {
+            xtype: "button",
+            text: "上传",
+            style: "background:blue",
+            margin: "40 10 10 10",
+            handler: function () {
+              upWin();
+            }
+          }
+        ]
+      },
+        {
+          layout: "hbox",
+          items: [
+            new Ext.custom.middletextfield({
+              itemId: "videoName",
+              emptyText: "视频名称",
+              beforeLabelTextTpl: required,
+              margin: "10 10 10 40",
+              fieldLabel: "视频名称"
+            }), {
+              xtype: "panel",
+              html: "60字以内",
+              margin: "13 0 0 0"
+            }
+          ]
+        },
+        {
+          layout: "hbox",
+          items: [
+            new Ext.custom.middletextfield({
+              itemId: "videotime",
+              emptyText: "视频时长",
+              beforeLabelTextTpl: required,
+              margin: "10 10 10 40",
+              fieldLabel: "视频时长"
+            }), {
+              xtype: "panel",
+              html: "填分钟数",
+              margin: "13 0 0 0"
+            }
+          ]
+        },
+        {
+          xtype:"button",
+          text:"确定",
+          width:100,
+          height:34,
+          margin:"10 40 10 110",
+          style:"background:green",
+          handler: function () {
+           var url=videoId?"/Handler/VideoHandler.ashx?action=update":"/Handler/VideoHandler.ashx?action=add"
+            $.ajax({
+              url:url,
+              type:"post",
+              dataType:"json",
+              async:false,
+              data:{
+                Vname:GLOBAL.videoWin.down("#videoName").getValue(),
+                Vtime:GLOBAL.videoWin.down("#videotime").getValue(),
+                Vurl:GLOBAL.videoWin.down("#videoSrc").getValue(),
+                ID:videoId,
+              }
+            }).done(function(result){
+              Ext.Msg.alert("提示",result.success)
+              getVideoList()
+            })
+            GLOBAL.videoWin.hide()
+          }
+        },
+        {
+          xtype:"button",
+          text:"取消",
+          width:100,
+          height:34,
+          handler:function(){
+            GLOBAL.videoWin.hide()
+          }
+        }
+      ]
+    }).show()
+    if(videoId){
+      //取到的是GLOBAL videoBox 已有的数据模型
+      // 得到GLOBAL.girdBox.getSelectionModel()的模型
+      // getSelection()  取到具体的   [0]得到第一个   data 表格里面所有的数据
+      var videoData= GLOBAL.girdBox.getSelectionModel().getSelection()[0].data;
+      GLOBAL.videoWin.down("#videoName").setValue(videoData.Vname),
+         GLOBAL.videoWin.down("#videoTime").setValue(videoData.Vtime),
+         GLOBAL.videoWin.down("#videoSrc").setValue(videoData.Vurl),
+        GLOBAL.videoWin.down("#videoSrc").setDisabled(true);  //视频地址不可修改
+      GLOBAL.videoId=videoData.ID
+    }
+  }
+  //上传视频
+  function upWin(){
+    GLOBAL.upWin=new Ext.custom.uploadFileWin({
+      titile:"视频上传",
+      customMaxSize:1024*1024*1024,
+      customfileFieldLabel:"附件",
+      customUrl:"/Handler/UpLoadVideoHandler.ashx",
+      cbFn:function(result){
+        Ext.Msg.alert("提示",result.success)
+        GLOBAL.videoWin.down("#videoSrc").setValue(result.cacheName)
+          GLOBAL.upWin.close()
+      }
+    }).show()
+  }
+//删除视频
+  function videoDel(videoId){
+    $.ajax({
+      url:"/Handler/VideoHandler.ashx?action=delete",
+      type:"get",
+      dataType:"json",
+      async:false,
+      data:{
+        ID:videoId
+      }
+    }).done(function(result){
+      Ext.Msg.alert("提示",result.success);
+      getVideoList()
+
+    })
+  }
+</script>
+</html>

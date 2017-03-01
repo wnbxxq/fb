@@ -1,0 +1,98 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.fooder{
+	width: 100%;
+	padding: 27px 0;
+	background: #3E4453;
+}
+.fooder_warp{
+	width: 1140px;
+	height: 123px;
+	margin: 0 auto;
+}
+.fooder_warp_let{
+	width: 500px;
+	height: 84px;
+	margin-left: 100px;
+	float: left;
+}
+.fooder_warp_let_nav{
+	padding: 0 6px;
+	float: left;
+	border-right: 1px solid #FFFFFF;
+	height: 16px;
+	line-height: 14px;
+	margin-bottom: 15px;
+}
+.fooder_warp_let_nav a{
+	color: #FFFFFF;
+	font-size: 13px;
+	text-decoration: none;
+}
+.fooder_warp_let_nav a:hover{
+	color: #FE0000;
+	text-decoration: underline;
+}
+.gongzuori{
+	width: 254px;
+	height: 16px;
+	float: left;
+	line-height: 14px;
+	font-size: 12px;
+	color: #AEAEAE;
+	padding-left:5px ;
+	margin-bottom: 15px;
+	border-right: 1px solid #AEAEAE;
+}
+.youxiang{
+	height: 16px;
+	float: left;
+	line-height: 14px;
+	font-size: 12px;
+	color: #AEAEAE;
+	padding-left:5px ;
+}
+.fooder_warp_rig{
+	width: 167px;
+	height: 123px;
+	float: right;
+	text-align: center;
+}
+.fooder_warp_rig p{
+	color: #FFFFFF;
+	font-size: 13px;
+	
+}
+
+.fanhuitop{
+	width: 87px;
+	height: 161px;
+	position: fixed;
+	right: 40px;
+	bottom: 162px;
+	z-index: 999;
+	display: none;
+}
+.fanhuitop_top{
+	width: 50px;
+	height: 50px;
+	margin: 0 auto;
+	cursor: pointer;
+	transition: all .5s ease 0s;
+	background: url(../images/scroll_top_bg.png) no-repeat 0px 0px; 
+}
+.fanhuitop_top:hover{
+	background-position: 0px -50px;
+	transition: all .5s ease 0s;
+}
+.fanhuitop_youxiang{
+	height: 87px;
+	width: 87px;
+	position: absolute;
+	top: 74px;
+	right: 0;
+	background: url(../images/fixed_contactus.png) top right no-repeat;
+    cursor: pointer;
+}

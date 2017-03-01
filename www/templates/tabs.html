@@ -1,0 +1,40 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive" ng-class="{'tabs-item-hide':$root.hideTabs}">
+
+  <!-- Dashboard Tab -->
+  <!--ion-tabs  作为底部导航切换-->
+  <!--ion-tab   类似于li的子类 作用  定义图标  文字
+      icon-off  当失去焦点的时候图标的样式
+      icon-on   获得焦点时图标的样式
+
+  -->
+  <ion-tab title="首页" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/dash">
+    <ion-nav-view name="tab-dash"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Chats Tab -->
+  <ion-tab title="我的课程" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" href="#/tab/chats">
+    <ion-nav-view name="tab-chats"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Account Tab -->
+  <ion-tab title="课程列表" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" href="#/tab/account">
+    <ion-nav-view name="tab-account"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="个人中心" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/class">
+    <ion-nav-view name="tab-class"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>
+
+<!--<ion-tabs class="stable-bg">-->
+  <!--<ion-tab ion-off="ion-ios-home"ion-on="ion-ios-home"title="首页"></ion-tab>-->
+  <!--<ion-tab ion-off="ion-paper"ion-on="ion-ios-paper-plause"title="课程列表"></ion-tab>-->
+  <!--<ion-tab ion-off="ion-calendar"ion-on="ion-ios-calender-plause"title="首页"></ion-tab>-->
+  <!--<ion-tab ion-off="ion-ios-gear-outline"ion-on="ion-ios-gear-plause"title="首页"></ion-tab>-->
+<!--</ion-tabs>-->

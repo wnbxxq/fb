@@ -1,0 +1,73 @@
+<ion-view hide-nav-bar="true"view-title="首页">
+  <style>
+    .banner{height:8rem;}
+    .banner img{width:100%;height:100%}
+    /*.col-50{min-height: 5rem}*/
+    .col-50 img{width:100%;}
+  </style>
+  <ion-content>
+    <div class="item item-input-inset item-avatar-left bar " style="min-height:50px;">
+      <div class=" item-avatar"style="padding-left:50px;">
+      <img src="img/ben.png" alt="" style="top:5px;left:10px"/>
+      </div>
+
+      <div class="item-input-wrapper ">
+        <input type="text"class="item-input" placeholder="请输入相关字段"/>
+      </div>
+      <button class="button icon ion-search"></button>
+    </div>
+
+    <!--轮播-->
+    <!--delegate-handle="slide"  手势滑动到事件-->
+    <div>
+      <ion-slide-box auto-play="true" slide-interval="2000" does-continue="true"on-slide-changed=""pager-click=""delegate-handle="slide">
+        <ion-slide ng-repeat="item in bannerList">
+          <div class="banner">
+            <img src="{{item.Cpic}}" alt=""/>
+          </div>
+        </ion-slide>
+      </ion-slide-box>
+    </div>
+
+    <div class="item titleItem">
+      <h3>好评榜</h3>
+    </div>
+
+    <div class="row"ng-repeat="rowList in goodLists">
+      <div class="col col-50 item"  ng-repeat="colList in rowList" >
+        <img src="{{colList.Cpic}}" alt=""/>
+        <h3>{{colList.Cname}}</h3>
+        <p>{{colList.Cnumber}}</p>
+      </div>
+    </div>
+
+    <!--最新课程-->
+    <div class="item">
+      <h2 class="ng-binding">最新课程
+      <span style="float: right">更多
+        <i class="icon  ion-ios-arrow-right"></i>
+      </span>
+      </h2>
+    </div>
+    <div class="row" ng-repeat="item in newLists">
+      <div class="col col-50"ng-repeat="newlistCol in item">
+        <img src="{{newlistCol.Cpic}}" alt=""/>
+        <h3>{{newlistCol.Cname}}</h3>
+        <p>{{newlistCol.Cnumber}}</p>
+      </div>
+    </div>
+    <!--猜你喜欢-->
+    <div class="item">
+      <h3>猜你喜欢</h3>
+    </div>
+    <div class="list" ng-repeat="item in chooseList">
+     <ul>
+       <li class="item item-thumbnail-left ">
+         <img src="{{item.Cpic}}" alt=""/>
+         <h2>{{item.Cname}}</h2>
+         <h3>{{item.Cnumber}}</h3>
+       </li>
+     </ul>
+    </div>
+  </ion-content>
+</ion-view>

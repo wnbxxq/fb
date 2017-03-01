@@ -1,0 +1,97 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.footer-box{
+    width: 100%;
+    min-width: 1200px;
+    background:#2EAFBB;
+}
+.footer{
+    width: 1200px;
+    height: 305px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.bottom{
+    width: 280px;
+    float: left;
+    color:#EEEEEE;
+    margin-left: 20px;
+    overflow: hidden;
+}
+.bottom h3{
+    margin-top: 40px;
+}
+.bottom p{
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 25px;
+}
+.cha{
+    width: 96px;
+    height: 31px;
+    border-radius: 10px;
+    border: 2px solid #CCCCCC;
+    text-align: center;
+    line-height: 31px;
+    color: white;
+    font-size: 14px;
+    margin-left:60px;
+    margin-top: 20px;
+}
+.footer-p1{
+   padding-top:10px;
+    padding-bottom: 10px;
+    width: 224px;
+    height:28px;
+    overflow: hidden;
+    border-bottom:1px dashed white;
+}
+.footer-p1 img{
+    float: left;
+}
+.footer-p1 span{
+    font-size: 12px;
+    padding-left: 15px;
+}
+.bottom-li{
+    list-style: none;
+    width: 78px;
+    height: 26px;
+    border: 1px solid #CCCCCC;
+    float: left;
+    margin-left: 30px;
+    margin-top: 30px;
+    font-size: 12px;
+    line-height: 26px;
+    text-align: center;
+}
+li{
+    list-style: none;
+}
+i{
+    background:url("../images/sprite.png")no-repeat;
+    width: 18px;
+    float: left;
+    height: 18px;
+}
+.i1{
+    background-position: 0px -20px;
+}
+.i2{
+    background-position:-20px -18px;
+}
+.i3{
+    background-position: -40px -17px;
+}
+.i4{
+    background-position: 0px 0px;
+}
+.footer-p{
+    color: white;
+    font-size: 11px;
+    text-align: center;
+    padding-top:20px;
+    padding-bottom: 30px;
+}

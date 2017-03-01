@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/ext-all.css">
+    <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../css/fc-all.css">
+    <link rel="stylesheet" href="../css/ClearButton.css">
+
+    <script src="../js/jquery-1.8.3.min.js"></script>
+    <script src="../js/basicParameter.js"></script>
+    <script src="../js/ext-all.js"></script>
+    <script src="../js/basicExtModule.js"></script>
+    <script src="../js/PagingToolBar.js"></script>
+    <script src="../js/tools.js"></script>
+    <script src="../js/ClearButton.js"></script>
+</head>
+<body class="xn-body">
+<div class="xn_nowpath">--课程添加--</div>
+<div class="xn_section_wrap">
+  <div class="xn_section_title">
+    <span class="icon_wrap"><i class="icon-leaf" style="color:red"></i></span>
+    <span class="xn_title_name">课程信息</span>
+  </div>
+  <div id="classBox" class="xn_search_form"></div>
+</div>
+
+<div class="xn_section_wrap" style="height:400px;">
+  <div class="xn_section_title">
+    <span class="icon_wrap"><i class="icon-th"style="color:red"></i></span>
+    <span class="xn_title_name">课程内容</span>
+  </div>
+
+  <div class="xn_mask"></div>
+  <div id="classMulu" style="width:40%;float: left;margin: 15px; border:1px solid #cccccc">
+    <button style="width: 100px;height: 34px;background:green"class="xn_btn xn_btn_primary" onclick="addmulu()">添加目录</button>
+  </div>
+  <div id="classShipin" style="width:50%;float: right;margin: 15px;  border:1px solid #cccccc">
+    <button style="width: 100px;height: 34px;background:green"class="xn_btn xn_btn_primary" onclick="panduan()">添加视频</button>
+  </div>
+
+</div>
+
+<div class="xn_section_wrap">
+  <div class="xn_section_title">
+    <span class="icon_wrap"><i class="icon-th"></i></span>
+    <span class="xn_title_name">课程详情</span>
+  </div>
+  <div id="editor"></div>
+</div>
+</body>
+<script>
+  var GLOBAL=GLOBAL||{};
+  Ext.onReady(function(){
+    GLOBAL.courseId=getParam("courseId");
+    //一级仓库
+    GLOBAL.CategoryOnStore=Ext.create("Ext.data.Store",{
+      fields:["title","sysId","fatherId"]
+    })
+    //二级仓库
+    GLOBAL.CategoryTwStore=Ext.create("Ext.data.Store",{
+      fields:["title","sysId","fatherId"]
+    })
+    //三级仓库
+    GLOBAL.CategoryThreStore=Ext.create("Ext.data.Store",{
+      fields:["title","sysId","fatherId"]
+    });
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=getcategory",
+      type:"get",
+      dataType:"json",
+      async:false,
+      data:""
+    }).done(function(result){
+      console.log(result.data);
+      GLOBAL.CateData=result.data;
+      var arr=[];
+      for(var i=0;i<GLOBAL.CateData.length;i++){
+        if(GLOBAL.CateData[i].fatherId==0){
+          arr.push(GLOBAL.CateData[i])
+        }
+      }
+      GLOBAL.CategoryOnStore.loadData(arr);
+    })
+
+//第一部分
+   GLOBAL.clForm=Ext.create("Ext.form.Panel",{
+     renderTo:"classBox",
+     layout:"hbox",
+     items:[{
+       items:[
+       {
+         layout:"hbox",
+         items:[
+           new Ext.custom.bigtextfield({
+             itemId:"cName",
+             fieldLabel:"课程名称",
+             beforeLabelTextTpl:required,
+             margin:"30 0 10 10",
+           }),{
+             xtype:"panel",
+             html:"60字以内",
+             margin:"40 0 0 10"
+           }
+         ]
+       },
+       {
+         layout:"hbox",
+         items:[
+           new Ext.custom.bigtextfield({
+             itemId:"describe",
+             fieldLabel:"课程描述",
+             beforeLabelTextTpl:required,
+             margin:10,
+           }),{
+             xtype:"panel",
+             html:"100字以内",
+             margin:"20 0 0 0"
+           }]
+       },
+       {
+         layout:"hbox",
+         items:[
+           new Ext.custom.middletextfield({
+             itemId:"price",
+             fieldLabel:"课程价格",
+             beforeLabelTextTpl:required,
+             margin:10,
+           }),{
+             xtype:"panel",
+             html:"课程价格以元为单位，免费课程设置为0",
+             margin:"20 0 0 0"
+           },
+         ]
+       },
+       {
+         layout:"hbox",
+         items:[
+           new Ext.custom.basicCombo({
+             itemId:"CategoryOn",
+             fieldLabel:"专业选择",
+             valueField:"sysId",
+             displayField:"title",
+             store:GLOBAL.CategoryOnStore,
+             width:240,
+             margin:10,
+             //监听值得改变
+             listeners:{
+               //当改变值时触发的函数
+               change:function (g,value){
+//                 console.log(value);
+                 GLOBAL.clForm.down("#CategoryTw").setValue("");      //对仓库进行清空
+                 GLOBAL.clForm.down("#CategoryThre").setValue("");
+                 var arr=[];
+                 for(var i=0;i<GLOBAL.CateData.length;i++){
+                   if(GLOBAL.CateData[i].fatherId==value){
+                     arr.push(GLOBAL.CateData[i])
+                   }
+                 }
+                 GLOBAL.CategoryTwStore.loadData(arr);
+               }
+             }
+           }),
+           new Ext.custom.basicCombo({
+             itemId:"CategoryTw",
+             valueField:"sysId",
+             displayField:"title",
+             margin:10,
+             store: GLOBAL.CategoryTwStore,
+             listeners:{
+               change:function(g,value){
+                 GLOBAL.clForm.down("#CategoryThre").setValue("");
+                 var arr=[];
+                 for(var i=0;i<GLOBAL.CateData.length;i++){
+                   if(GLOBAL.CateData[i].fatherId==value){
+                     arr.push(GLOBAL.CateData[i])
+                   }
+                 }
+                 GLOBAL.CategoryThreStore.loadData(arr);
+               }
+             }
+           }),
+           new Ext.custom.basicCombo({
+             itemId:"CategoryThre",
+             margin:10,
+             valueField:"sysId",
+             displayField:"title",
+             store:GLOBAL.CategoryThreStore ,
+           })
+         ]
+       },
+       {
+         itemId:"saveBtn",
+         xtype:"button",
+         width:100,
+         height:34,
+         text:"保存",
+         style:"background:green",
+         margin:"10 0 30 20",
+         handler:function(){
+           save()
+         }
+       }
+     ]},{
+       items:[{
+         xtype: "panel",
+         html:"<span>课程封面</span>"+"<div style='width:200px;height:150px;border:1px solid #cccccc;text-align:center'>" +
+         "<img id='picter' src='' style='width:100%'/></div>",
+         margin:50,
+       },{
+         xtype:"panel",
+         html:"<a style='color:#0070a9;cursor:pointer' onclick='Delpicter()'>清除</a>",
+         margin:"-40 0 0 50",
+       }, {
+         xtype: "panel",
+         html: "<a style='color:#0070a9;cursor: pointer' onclick='upPicter()'>上传</a>",
+         margin:"-15 10 50 210"
+       }]
+     }]
+   })  //
+
+    //课程详情
+    GLOBAL.editor=Ext.create("Ext.panel.Panel",{
+      renderTo:"editor",
+      items:[
+        {
+          xtype:"htmleditor",
+          id:"htmleditor",
+          width:"100%",
+          height:300,
+        },{
+          xtype:"button",
+          width:100,
+          height:34,
+          text:"保存",
+          handler:function(){
+            wholeSave();
+          }
+        }]
+    });
+
+    //为添加目录创建商店
+   GLOBAL.gridBoxStore=Ext.create("Ext.data.Store",    {
+      fields:["CDName","ID","CourseNumber"]
+    })  //
+
+   GLOBAL.gridBox=Ext.create("Ext.grid.Panel",{
+     minHeight:BPR.gridMinHeight,
+     store:GLOBAL.gridBoxStore,
+     renderTo:"classMulu",
+     margin:"10 0 0 0 ",
+     columns:[
+       {header:"目录",width:150,dataIndex:"CDName"},
+       {header:"课件数",width:150,dataIndex:"CourseNumber",flex:1},
+       {header:"操作",width:150,dataIndex:"ID",
+        renderer:function(value,cellMeta,record){
+          //record  获取整行记录
+          return "<a class='xn_tablea' onclick='addmulu("+value+")'>编辑</a><a class='xn_tablea' onclick='deleteList("+value+")'>删除</a>"
+        }
+       }
+     ],
+     listeners:{
+       "cellclick":function(g,b,c,record){
+         GLOBAL.vid=record.data.ID;
+         muShow();
+       }
+     }
+   })
+  //为添加课件创建商店
+    GLOBAL.classTwoStore=Ext.create("Ext.data.Store",{
+      fields:["Vname","Vtime","ID"]
+    });  //
+    //为添加是视频创建商店
+    GLOBAL.classFromStore=Ext.create("Ext.data.Store",{
+      fields:["Vname","Vtime","ID","Vurl"]
+    }); //
+
+   GLOBAL.classForm=Ext.create("Ext.grid.Panel",{
+     minHeight:BPR.gridMinHeight,
+     store:GLOBAL.classTwoStore,
+     bbar: GLOBAL.pageBar,
+     renderTo:"classShipin",
+     margin:"10 0 0 0 ",
+     columns:[
+       {header:"视频名称",width:150,dataIndex:"Vname"},
+       {header:"时长",width:150,dataIndex:"Vtime",flex:1},
+       {header:"操作",width:150,dataIndex:"ID",
+       renderer:function(value,sellMate, record){
+         return"<a class='xn_tablea' onclick='deleteTwo("+value+")'>删除</a>"
+       }
+       }
+     ]
+   });
+    if(getParam("edit")=='edit'){
+      dataInfo();
+    }
+
+    //分页蓝
+    GLOBAL.pageBar=Ext.create("PagingToolBar",{
+      onChange:function(g,pageFirst,pageSize){
+        var pageStart=parseInt(pageFirst/pageSize+1);
+        getVideoList(pageStart,pageFirst)
+      }
+    })
+  })
+  //获取视频系统信息
+  function getVideoList(pageStart,pageFirst){         //pageFirst 每一页第一条数据的下标
+    var data={
+      searchText:GLOBAL.addshipin.down("#className").getValue(),
+      pageStart:pageStart?pageStart:1
+    };
+    $.ajax({
+      url:"/Handler/VideoHandler.ashx?action=show",
+      type:"get",
+      dataType:"json",
+      async:false,
+      data:data,
+    }).done(function(result ){
+      GLOBAL.pageBar.setPageSize(result.data.pageSize); //pageSize  每页显示的条数
+      GLOBAL.pageBar.loadPage(pageFirst?pageFirst:0,result.data.count);
+      GLOBAL.classFromStore.loadData(result.data.list);
+    })
+  }
+  //上传图片
+  function upPicter(){
+    GLOBAL.upPicter=new Ext.custom.uploadFileWin({
+     title:"图片上传",
+      customMaxSize:1024*1024*1024,
+      customfileFieldLabel:"选择附件",
+      customUrl:"/Handler/UpLoadPicHandler.ashx",
+      //执行的是一个点击函数
+      cbFn:function(result){
+//        console.log(result);
+        Ext.Msg.alert("提示",result.success)
+        $("#picter").attr('src',result.cacheName)
+        GLOBAL.upPicter.close()
+      }
+    }).show()
+  }   //
+
+  //清除图片
+  function Delpicter(){
+//    alert(111)
+    $("#picter").attr('src','')
+  }  //
+
+  //第一次提交  (保存）
+  function save(){
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=add",
+      type:"post",
+      dataType:"json",
+      async:false,
+      data:{
+        Cname:GLOBAL.clForm.down("#cName").getValue(),
+        Cdescribe:GLOBAL.clForm.down("#describe").getValue(),
+        Cprice:GLOBAL.clForm.down("#price").getValue(),
+        CategoryOne:GLOBAL.clForm.down("#CategoryOn").getValue(),
+        CategoryTwo:GLOBAL.clForm.down("#CategoryTw").getValue(),
+        CategoryThree:GLOBAL.clForm.down("#CategoryThre").getValue(),
+        Cpic:$("#picter").attr("src")
+      }
+    }).done(function(result){
+      Ext.Msg.alert("提示",result.success)
+      if(result.success){
+       window.location.search='edit=edit&courseId='+result.ID;
+      }
+    })
+  }; //
+
+  //获取课程信息
+  function dataInfo(){
+    $(".xn_mask").hide();
+    GLOBAL.clForm.down("#saveBtn").hide();
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=getcourse",
+      type:"get",
+      dataType:"json",
+      async:false,
+      data:{
+        ID:GLOBAL.courseId
+      }
+    }).done(function(result){
+//      console.log(result);
+      var data=result.data.courselist;
+      var data1=result.data.dirlist;
+        GLOBAL.gridBoxStore.loadData(data1),
+        GLOBAL.clForm.down("#cName").setValue(data.Cname),
+        GLOBAL.clForm.down("#describe").setValue(data.Cdescribe),
+        GLOBAL.clForm.down("#price").setValue(data.Cprice),
+        GLOBAL.clForm.down("#CategoryOn").setValue(parseInt(data.CategoryOne)),
+        GLOBAL.clForm.down("#CategoryTw").setValue(parseInt(data.CategoryTwo)),
+        GLOBAL.clForm.down("#CategoryThre").setValue(parseInt(data.CategoryThree)),
+        $("#picter").attr("src",data.Cpic)
+    })
+  }
+
+  //添加目录  目录弹框
+  function addmulu(userId){
+    //GLOBAL.userId=userId;
+    GLOBAL.addmulu=new Ext.custom.basicWindow({
+      title:"目录",
+      width:400,
+      height:240,
+      items:[
+        new Ext.custom.middletextfield({
+          itemId:"cName",
+          margin:10,
+          fieldLabel:"用户名称",
+          beforeLabelTextTpl:required,
+        }),{
+          xtype:"button",
+          style:"background:green",
+          text:"确定",
+          width:100,
+          height:34,
+          margin:"30 50 10 50",
+          handler:function(){
+             var url=userId?"/Handler/CourseHandler.ashx?action=updateDirectory":"/Handler/CourseHandler.ashx?action=AddDirectory";
+            $.ajax({
+              url:url,
+              type:"post",
+              dataType:"json",
+              async:false,
+              data:{
+                CDName:GLOBAL.addmulu.down("#cName").getValue(),
+                ID:userId,
+                CDid:GLOBAL.courseId,
+              }
+            }).done(function(result){
+              Ext.Msg.alert("提示",result.success)
+              GLOBAL.gridBoxStore.loadData(result.data.list)
+              GLOBAL.addmulu.hide()
+            })
+          }
+        },{
+          xtype:"button",
+          text:"取消",
+          width:100,
+          height:34,
+          margin:"20 0 0 0",
+          handler:function(){
+            GLOBAL.addmulu.hide()
+          }
+        }
+      ]
+    }).show()
+    if(userId){   //判断是添加还是编辑
+      var admin=GLOBAL.gridBox.getSelectionModel().getSelection()[0].data;
+      //GLOBAL.gridBox.getSelectionModel() 获取当前表格里面所有的数据以及方法
+      //GLOBAL.gridBox.getSelectionModel().getSelection()   获取到整行具体数据  并且有length 之说
+      //GLOBAL.gridBox.getSelectionModel().getSelection()[0]获取到整行具体数据  并且没有length 之说
+      GLOBAL.addmulu.down("#cName").setValue(admin.CDName)
+        GLOBAL.userId=admin.ID
+    }
+  } //
+
+  //添加视频  视频弹框
+  function addshipin(){
+    GLOBAL.addshipin=new Ext.custom.basicWindow({
+      title:"课件添加",
+      width:1000,
+      height:600,
+      margin:10,
+      itemId:"addVideo",
+      items:[{
+        layout:"hbox",
+        items:[
+          new Ext.custom.textfield({
+            itemId:"className",
+            margin:20,
+            height:34,
+            emptyText:"课件名称",
+          }),{
+            xtype:"button",
+            width:100,
+            height:34,
+            margin:20,
+            style:"background:green",
+            text:"查询",
+            handler:function(){}
+          }
+        ]
+      },{
+        xtype:"grid",
+        width:990,
+        height:30,
+        minHeight:BPR.gridMinHeight,
+        id:"classId",
+        store: GLOBAL.classFromStore,
+        bbar: GLOBAL.pageBar,
+        renderTo:"classBox",
+        columns:[
+          {header:"视频名称",width:150,dataIndex:"Vname"},
+          {header:"视频时长",width:150,dataIndex:"Vtime",flex:1},
+          {header:"操作",width:150,dataIndex:"ID",
+          renderer:function(value,sellMate,record){
+            return"<a class='xn_tablea' onclick='addjia("+value+")'>添加<a/>"
+          }
+          },
+        ]
+      }]
+    }).show()
+    getVideoList()
+  }
+
+  //
+  function panduan(){
+    var item=GLOBAL.gridBox.getSelectionModel().getSelection();
+    if(item.length<1){
+      Ext.Msg.alert("提示","没有选中目录内容")
+    }else{
+      addshipin()
+    }
+  };
+
+  //弹框里面的课件添加
+  function addjia(addId){
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=addvideo",
+      type:"get",
+      dataType:"json",
+      async:false,
+      data:{
+        courseId:GLOBAL.courseId,
+        Did:GLOBAL.vid,
+        Vid:addId,
+      }
+    }).done(function(result){
+      Ext.Msg.alert("提示",result.success)
+      GLOBAL.classTwoStore.loadData(result.data.list)
+    })
+  };
+
+  //目录下的课件
+  function muShow(){
+    $.ajax({
+      url:"/Handler/VideoHandler.ashx?action=showdir",
+      type:"post",
+      dataType:"json",
+      async:false,
+      data:{
+        DirID:GLOBAL.vid,
+      }
+    }).done(function(result){
+      GLOBAL.classTwoStore.loadData(result.data.list)
+    })
+  }
+  //删除课件（目录里面的）
+  function deleteTwo(addId){
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=delvideo",
+      type:"get",
+      dataType:"json",
+      async:false,
+      data:{
+        courseId:GLOBAL.courseId,
+        Did:GLOBAL.vid,
+        Vid:addId,
+      }
+    }).done(function (result) {
+//      console.log(result);
+      Ext.Msg.alert("提示",result.success);
+      muShow();
+    })
+  }
+//目录的删除
+  function deleteList(listId){
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=deleteDirectory",
+      type:"get",
+      dataType:"json",
+      async:false,
+      data:{
+        ID:listId
+      }
+    }).done(function (result) {
+//      console.log(result);
+      Ext.Msg.alert("提示",result.success);
+      GLOBAL.gridBoxStore.loadData(result.data.list);
+    })
+  }
+  //最后的保存
+  function wholeSave(){
+      $.ajax({
+        url:"/Handler/CourseHandler.ashx?action=update",
+        type:"post",
+        dataType:"json",
+        async:false,
+        data:{
+          ID:GLOBAL.courseId,
+          Cname:GLOBAL.clForm.down("#cName").getValue(),
+          Cdescribe:GLOBAL.clForm.down("#describe").getValue(),
+          Cprice:GLOBAL.clForm.down("#price").getValue(),
+          CategoryOne:GLOBAL.clForm.down("#CategoryOn").getValue(),
+          CategoryTwo:GLOBAL.clForm.down("#CategoryTw").getValue(),
+          CategoryThree:GLOBAL.clForm.down("#CategoryThre").getValue(),
+          Cpic:$("#picter").attr("src"),
+          CDetails:GLOBAL.editor.down("#htmleditor").getValue(),
+        }
+      }).done(function(result){
+        Ext.Msg.alert("提示",result.success)
+        window.location="classList.html";
+      })
+
+  }
+</script>
+</html>

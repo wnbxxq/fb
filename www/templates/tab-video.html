@@ -1,0 +1,34 @@
+<ion-view view-title="播放视频页" hide-nav-bar="true" hide-tabs='$rootScope.hideTabs'>
+  <style>
+    .col-50{text-align: center;}
+    video{width:100%;height:100%}
+  </style>
+  <ion-content>
+    <div>
+      <video controls="controls">
+        <source src="img/mov_aaa.mp4"/>
+      </video>
+    </div>
+    <div class="row item">
+      <div class="col col-50">
+        <h3 class="title" ng-click="muList()">目录
+          <i class="icon ion-ios-arrow-down"></i>
+        </h3>
+      </div>
+      <div class="col col-50">
+        <h3 class="title"ng-click="xqing()">详情
+          <i class="icon ion-ios-arrow-down"></i>
+        </h3>
+      </div>
+    </div>
+    <div class="list ">
+      <ul>
+        <li class="item item-thumbnail-left">
+          <img src="img/ben.png" alt=""/>
+          <h3>fghbfh</h3>
+          <p>gfhfhf</p>
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+  </ion-view>

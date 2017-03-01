@@ -1,0 +1,35 @@
+<ion-view view-title="个人" hide-nav-bar="true" style="background:url('img/person_01.png')#fff no-repeat top;background-size:100%;">
+  <style>
+    .touxiang{text-align: center;padding-top:3rem}
+    .touxiang img:first-child{width:6rem;height:6rem}
+    .touxiang img:nth-child(2){position: absolute;top:6%;left:29%}
+    .touxiang img:nth-child(3){position: absolute;bottom:62%;left:60%}
+    .item span{float: right}
+  </style>
+  <ion-content>
+    <div class="touxiang">
+      <img src="img/person_touxiang.png" alt=""/>
+      <img src="img/person_03.png" alt=""/>
+      <img src="img/person_04.png" alt=""/>
+      <p style="color:white;margin-bottom:3rem;font-size:22px;">天涯无痕</p>
+
+      <div class="list ">
+        <ul>
+          <li class="item  item-icon-left">
+            <i class="icon ion-ios-person-outline"></i>
+            <span>{{name}}</span>
+          </li>
+          <li class="item  item-icon-left">
+            <i class="icon ion-ios-email-outline"></i>
+            <span>{{email}}</span>
+          </li>
+          <li class="item  item-icon-left">
+            <i class="icon ion-ios-telephone-outline"></i>
+            <span>{{phone}}</span>
+          </li>
+        </ul>
+      </div>
+      <button class="button button-positive"ng-click="back()">退出登录</button>
+    </div>
+  </ion-content>
+</ion-view>

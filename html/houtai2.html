@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../css/ext-all.css">
+    <link rel="stylesheet" href="../css/fc-all.css"/>
+     <link rel="stylesheet" href="../css/ClearButton.css"/>
+    <link rel="stylesheet" href="../css/hou.css"/>
+  <script src="../js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/basicParameter.js"></script><!--ext本身的js库-->
+  <script type="text/javascript" src="../js/ext-all.js"></script>
+  <script type="text/javascript" src="../js/basicExtModule.js"></script>
+  <script src="../js/houtaijs.js"></script>
+  <!--<script type="text/javascript" src="../js/PagingToolBar.js"></script>-->
+  <!--<script type="text/javascript" src="../js/tools.js"></script>-->
+  <!--<script type="text/javascript" src="../js/ClearButton.js"></script>-->
+</head>
+<body>
+<div class="warp_box">
+<div class="header_warp">
+    <div class="header">
+        <img src="../Images/back_logo.png" alt=""/>
+        <ul class="header_center">
+            <li>
+                <img src="../Images/qiu.png" alt=""/>
+                <span>卓新思创</span>
+            </li>
+            <li>
+                <img src="../Images/xiaoxi.png" alt=""/>
+                <span>在线客服</span>
+            </li>
+            <li>
+                <img src="../Images/wenti.png" alt=""/>
+                <span>常见问题</span>
+            </li>
+            <li id="alertw">
+                <img src="../Images/wenti.png" alt=""/>
+                <span>安全问题</span>
+            </li>
+            <li style="width: 70px" id="exit">
+                <img src="../Images/wenti.png" alt=""/>
+                <span>退出</span>
+            </li>
+            <li style="width:40px">
+                <span id="userName"></span>
+            </li>
+        </ul>
+        <img src="../Images/touxiang.jpg" alt=""style="float:right;padding-top:0"/>
+    </div>
+</div>
+<div class="nav_warp">
+     <div class="nav">
+       <ul>
+           <li class="na">
+               <img src="../Images/shng.jpg" alt=""class="top"/>
+               <i class="icon-user f1"></i>
+               <span>用户管理</span>
+               <img src="../Images/xia.jpg" alt=""class="bottom"/>
+               <div class="hide">
+                   <ul class="system">
+                       <p link="systemPerson.html" id="system_person"><i class="icon-user"></i>系统人员</p>
+                       <p link="studentList(1).html" id="student_List"><i class="icon-group"></i>学员管理</p>
+                       <p><i class="icon-legal"></i>权限管理</p>
+                   </ul>
+               </div>
+           </li>
+           <li class="na">
+               <img src="../Images/shng.jpg" alt=""class="top1"/>
+               <i class="icon-book f1"></i>
+               <span>课程管理</span>
+               <img src="../Images/xia.jpg" alt=""class="bottom1"/>
+               <div class="hide">
+                   <ul class="system">
+                       <p link="classList.html" id="class_List"><i class="icon-th"></i>课程列表</p>
+                       <p><i class="icon-plus" onclick="window.open('classEditor.html')"></i>添加课程</p>
+                       <p link="video.html" id="video_List"><i class="icon-facetime-video"></i>视频管理</p>
+                       <p><i class="icon-pencil"></i>课程评价</p>
+                   </ul>
+               </div>
+           </li>
+           <li class="na">
+               <img src="../Images/shng.jpg" alt=""class="top2"/>
+               <i class="icon-tasks f1"></i>
+               <span>统计报表</span>
+               <img src="../Images/xia.jpg" alt=""class="bottom2"/>
+               <div class="hide">
+                 <ul>
+                   <p><i class="icon-book"></i>课程统计</p>
+                   <p><i class="icon-group"></i>学员统计</p>
+                   <p><i class="icon-globe"></i>访问统计</p>
+                  </ul>
+              </div>
+           </li>
+           <li class="na">
+               <img src="../Images/shng.jpg" alt=""class="top3"/>
+               <i class="icon-folder-close f1"></i>
+               <span>其他管理</span>
+               <img src="../Images/xia.jpg" alt=""class="bottom3"/>
+               <div class="hide">
+                   <ul>
+                       <p><i class="icon-envelope"></i>反馈意见</p>
+                   </ul>
+               </div>
+           </li>
+           <li class="na">
+               <img src="../Images/shng.jpg" alt=""class="top4"/>
+               <i class="icon-bookmark f1"></i>
+               <span>数据字典</span>
+               <img src="../Images/xia.jpg" alt=""class="bottom4"/>
+               <div class="hide">
+                   <ul>
+                       <p><i class="icon-leaf"></i>常用选项</p>
+                       <p><i class="icon-map-marker"></i>地区</p>
+                       <p><i class="icon-flag"></i>专业</p>
+                   </ul>
+               </div>
+           </li>
+           <li class="na">
+               <img src="../Images/shng.jpg" alt=""class="top5"/>
+               <i class="icon-cog f1"></i>
+               <span>系统维护</span>
+               <img src="../Images/xia.jpg" alt=""class="bottom5"/>
+               <div class="hide">
+                   <ul>
+                       <p><i class="icon-cog"></i>系统设置</p>
+                       <p><i class="icon-calendar"></i>操作文件</p>
+                   </ul>
+               </div>
+           </li>
+       </ul>
+     </div>
+</div>
+</div>
+<div id="frameBox"></div>
+</body>
+</html>

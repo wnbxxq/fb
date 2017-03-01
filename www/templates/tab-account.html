@@ -1,0 +1,65 @@
+<!--<ion-view view-title="我的课程" hide-nav-bar="true">-->
+  <!--<style>-->
+    <!--.col h4{text-align: center}-->
+    <!--.col:first-child{border:1px solid #cccccc}-->
+  <!--</style>-->
+  <!--<ion-content>-->
+    <!--<div class="bar bar-header item">-->
+      <!--<h1 class="title">我的课程</h1>-->
+      <!--<button class="button"ng-disabled="myEdit"ng-click="dataDelete=!dataDelete">编辑</button>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;收藏课程&ndash;&gt;-->
+  <!--<div class="row">-->
+    <!--<div class="col col-50 item "  >-->
+      <!--<h4 ng-style="ourColor"ng-click="myCourse()">我的课程<i class=" ion-ios-arrow-down"></i></h4>-->
+    <!--</div>-->
+    <!--<div class="col col-50 item ">-->
+      <!--<h4 ng-style="cellCless"ng-click="sellClass()">收藏课程<i class=" ion-ios-arrow-down"></i></h4>-->
+    <!--</div>-->
+  <!--</div>-->
+
+
+<!--&lt;!&ndash;登录提示&ndash;&gt;-->
+    <!--<div class="dl"ng-show="dl_tf"style="text-align: center;line-height: 10rem">请 <a href="#/tab/class">登录</a></div>-->
+
+    <!--&lt;!&ndash;我的课程&ndash;&gt;-->
+<!--<div class="list" ng-show="ourCourse">-->
+  <!--<ul>-->
+    <!--<li class="item item-thumbnail-left"ng-repeat="item in myCourseList">-->
+      <!--<img ng-src="{{item.Cpic}}" alt=""/>-->
+      <!--<h2>{{item.Cname}}</h2>-->
+      <!--<p>{{item.Cdescribe}}</p>-->
+    <!--</li>-->
+  <!--</ul>-->
+<!--</div>-->
+    <!--&lt;!&ndash;收藏课程&ndash;&gt;-->
+    <!--<div class="list has-header collClass" ng-show="collection">-->
+      <!--<ion-list show-delete="dataDelete">-->
+        <!--<ion-item class="item item-thumbnail-left"ng-repeat="item in getCourse">-->
+          <!--<img ng-src="{{item.Cpic}}" alt=""/>-->
+          <!--<h2>{{item.Cname}}</h2>-->
+          <!--<p>-->
+            <!--<span>{{item.Cdescribe}}</span>-->
+            <!--<span>{{item.Cnumber}}</span>-->
+          <!--</p>-->
+          <!--<ion-delete-button class="ion-minus-circled" ng-click="delCourse(item.ID)"></ion-delete-button>-->
+        <!--</ion-item>-->
+      <!--</ion-list>-->
+    <!--</div>-->
+  <!--</ion-content>-->
+<!--</ion-view>-->
+
+
+  <ion-tabs>
+    <ion-tab title="评价" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" >
+      <ion-nav-view name="tab-class"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="收藏" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" >
+      <ion-nav-view name="tab-class"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="购买" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" >
+      <ion-nav-view name="tab-class"></ion-nav-view>
+    </ion-tab>
+  </ion-tabs>
+</ion-view>
+

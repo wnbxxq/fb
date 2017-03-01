@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+  <link rel="stylesheet" href="../css/ext-all.css">
+  <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="../css/fc-all.css">
+  <link rel="stylesheet" href="../css/ClearButton.css">
+  <script src="../js/jquery-1.8.3.min.js"></script>
+  <script src="../js/basicParameter.js"></script>
+  <script src="../js/ext-all.js"></script>
+  <script src="../js/basicExtModule.js"></script>
+  <script src="../js/PagingToolBar.js"></script>
+  <script src="../js/tools.js"></script>
+  <script src="../js/ClearButton.js"></script>
+</head>
+<body class="xn-body">
+<div class="xn_nowpath">--课程添加--</div>
+<div class="xn_section_wrap">
+  <div class="xn_section_title">
+    <span class="icon_wrap"><i class="icon-leaf" style="color:red;"></i></span>
+    <span class="xn_title_name" style="color:green">课程信息</span>
+  </div>
+  <div id="classBox" class="xn_search_form"></div>
+</div>
+
+<div id="leftBox"style="width:45%;float:left;margin:10px 0px 0px 0px;border:1px solid #cccccc">
+  <button class="xn_btn xn_btn_primary"style="width:100px;height:34px"style="background:red">添加目录</button>
+</div>
+<div id="right"style="width:45%;float:right;border:1px solid #cccccc">
+  <button class="xn_btn xn_btn_primary"style="width:100px;height:34px;background:red;">添加视频</button>
+</div>
+</body>
+<script>
+  var GLOBAL=GLOBAL||{};
+  Ext.onReady(function(){
+    Ext.create("Ext.form.Panel",{
+      renderTo:"classBox",
+      layout:"hbox",
+      items:[{
+        items:[
+          {
+            layout:"hbox",
+            items:[
+              new  Ext.custom.bigtextfield({
+                beforeLabelTextTpl:required,
+                fieldLabel:"课程名称",
+                itemId:"className",
+                margin:10,
+              }),{
+                xtype:"panel",
+                html:"60字以内",
+                margin:10,
+              }
+            ]
+          },
+          {
+          layout:"hbox",
+          items:[
+            new Ext.custom.bigtextfield({
+              beforeLabelTextTpl:required,
+              fieldLabel:"课程描述",
+              margin:10,
+            }),{
+              xtype:"panel",
+              html:"100字以内",
+              margin:10,
+            }
+          ]
+        },
+          {
+          layout:"hbox",
+          items:[
+            new Ext.custom.middletextfield({
+              beforeLabelTextTpl:required,
+              fieldLabel:"课程价格",
+              margin:10,
+            }),{
+              xtype:"panel",
+              html:"课程以元为单位，免费课程设置为0",
+              margin:10,
+            }
+          ]
+        },{
+           layout:"hbox",
+            items:[
+             new Ext.custom.middletextfield({
+               fieldLabel:"专业选择",
+               margin:10,
+              valueField:"",
+              displayField:"",
+              store:"",
+              itemId:""
+            }),
+            new Ext.custom.basicCombo({
+              margin:10,
+              valueField:"",
+              displayField:"",
+              store:"",
+              itemId:""
+            }),
+            new Ext.custom.basicCombo({
+              margin:10,
+              valueField:"",
+              displayField:"",
+              store:"",
+              itemId:""
+            }),
+          ]
+        },
+          {
+          xtype:"button",
+          text:"保存",
+          width:100,
+          height:34,
+          margin:10,
+          style:"background:green",
+        }
+        ]
+      },{
+        items:[{
+          margin:"20 0 0 50",
+          xtype:"panel",
+          html:"<span>课程封面</span>"+"<div style='width: 300px;height:200px;border:1px solid #cccccc'></div>"
+        },{
+          xtype:"panel",
+          html:"<a style='margin:45px'>清除</a>"+"<a style='margin-left:200px'>上传</a>"
+        }]
+      }]
+    });
+
+
+
+
+
+  })
+</script>
+</html>

@@ -1,0 +1,123 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+/*body{*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*background:url("../images/mMi3c.gif");*/
+/*}*/
+.frist{
+    background:url("../images/case1.jpeg")no-repeat center;
+    background-size:1920px 480px;
+    width: 100%;
+    height: 384px;
+    overflow: hidden;
+}
+.second-box{
+    width: 100%;
+}
+.second{
+    margin: 0 auto;
+    width: 960px;
+    height: 97px;
+    /*background: pink;*/
+    text-align: center;
+    position: relative;
+}
+.picture{
+    padding-top: 20px;
+    width: 125px;
+    height: 32px;
+}
+.line-left,.line-right{
+    height:1px;
+    width: 400px;
+    background:#CCCCCC;
+    position: absolute;
+    top:72px;
+    left:33px;
+}
+.an{
+    position: absolute;
+    top: 61px;
+    left:451px;
+    font-size:30px;
+    font-weight: 700;
+    color:#311759;
+    font-family: "Microsoft YaHei";
+}
+.line-right{
+    top:72px;
+    left:525px;
+}
+.third-box{
+    position: relative;
+    height: 189px;
+    width: 890px;
+    margin: 30px auto 0px;
+    /*background: pink;*/
+    overflow: hidden;
+}
+.third{
+    width: 2900px;
+    height: 189px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.third img{
+    float: left;
+    width: 208px;
+    height: 189px;
+    margin-left:15px;
+}
+em {
+    background: url("../images/slider-arrow.png") no-repeat;
+    width: 20px;
+    height: 35px;
+    position: absolute;
+    top: 91px;
+    left: 5px;
+}
+.left-ul{
+    top: 91px;left: 5px;
+}
+.left{
+    background-position:-176px 0px;
+    cursor: pointer;
+}
+.right{
+    top: 91px;
+    left: 855px;
+    background-position: -57px 0px;
+    cursor: pointer;
+}
+.forth-box{
+    width: 960px;
+    border-top: 2px solid #6FB04F;
+    padding-bottom: 30px;
+    margin: 60px auto 0px;
+    text-align: center;
+    background: #F1F2F6;
+}
+.forth{
+    width: 890px;
+    margin: 20px auto 0px;
+}
+.list{
+    padding-top: 30px;
+}
+.lis{
+    background:url("../images/lis_more_btn_bg.png")no-repeat top;
+    width: 58px;
+    height: 58px;
+    margin: 20px auto 0px;
+    transition: 0.5s;
+}
+.lis:hover{
+    background-position:0px -59px;
+}
+
+
+

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+  <link rel="stylesheet" href="../css/ext-all.css">
+  <!-- font-awesome 字体库,现今最流行-->
+  <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+  <!--fc-all.css  根据具体需求写的样式-->
+  <link rel="stylesheet" href="../css/fc-all.css">
+  <!-- ClearButton.css  清楚文本css样式ku-->
+  <link rel="stylesheet" href="../css/ClearButton.css">
+  <!--ext本身的加载速度慢,所以后续需要用大jq里的方法-->
+  <script src="../js/jquery-1.8.3.min.js"></script>
+  <!--自封装的js库-->
+  <script src="../js/basicParameter.js"></script>
+  <!--ext本身的js库-->
+  <script src="../js/ext-all.js"></script>
+  <!--自己封装的js主键库-->
+  <script src="../js/basicExtModule.js"></script>
+  <!--分页栏js库-->
+  <script src="../js/PagingToolBar.js"></script>
+  <!--工具库-->
+  <script src="../js/tools.js"></script>
+  <!--  清楚文本js库-->
+  <script src="../js/ClearButton.js"></script>
+</head>
+<body class="xn_body">
+<div class="xn_nowpath"></div>
+<div class=" xn_section_wrap">
+  <div class="xn_search_form" id="classSearch">
+    <button class="xn_btn xn_btn_primary" style="float:right;margin:10px"onclick="window.open('classEditor.html')">
+      <i class="icon-plus">添加</i>
+    </button>
+  </div>
+</div>
+
+<div class="xn_section_wrap">
+  <div class="xn_section_title">
+    <span class="icon_wrap"><i class="icon-th"></i></span>
+    <span class="xn_title_name">课程列表</span>
+  </div>
+  <div id="classBox"></div>
+</div>
+</body>
+<script>
+  var GLOBAL=GLOBAL||{};
+  Ext.onReady(function(){
+    //创建仓库
+    //一级仓库
+    GLOBAL.CategoryOneStore=Ext.create("Ext.data.Store",{
+      fields:["title","sysId","fatherId"]
+    })
+    //二级仓库
+    GLOBAL.CategoryTwoStore=Ext.create("Ext.data.Store",{
+      fields:["title","sysId","fatherId"]
+    })
+    //三级仓库
+    GLOBAL.CategoryThreeStore=Ext.create("Ext.data.Store",{
+      fields:["title","sysId","fatherId"]
+    });
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=getcategory",
+      type:"get",
+      dataType:"json",
+      async:false,
+      data:""
+    }).done(function(result){
+//      console.log(result);
+      GLOBAL.CategoryData=result.data;
+//      console.log(GLOBAL.CategoryData);
+      var arr=[];
+      for(var i=0;i<GLOBAL.CategoryData.length;i++){
+        if(GLOBAL.CategoryData[i].fatherId==0){
+         arr.push(GLOBAL.CategoryData[i])
+        }
+      }
+      GLOBAL.CategoryOneStore.loadData(arr);
+    })
+
+
+    GLOBAL.classForm=Ext.create("Ext.form.Panel",{
+      renderTo:"classSearch",
+      layout:"hbox",
+      items:[
+        new Ext.custom.textfield({
+          itemId:"classSearch",
+          height:34,
+          emptyText:"课程名称",
+          margin:10,
+        }),
+        new  Ext.custom.basicCombo({
+          itemId:"CategoryOne",
+          fieldLabel:"专业选择",
+          valueField:"sysId",
+          displayField:"title",
+          store:GLOBAL.CategoryOneStore,
+          width:240,
+          margin:10,
+          listeners:{
+            change:function(g,value){
+              GLOBAL.classForm.down("#CategoryTwo").setValue("");      //对仓库进行清空
+              GLOBAL.classForm.down("#CategoryThree").setValue("");
+              var arr=[];
+              for(var i=0;i<GLOBAL.CategoryData.length;i++){
+                if(GLOBAL.CategoryData[i].fatherId==value){
+                  arr.push(GLOBAL.CategoryData[i])
+                }
+              }
+              GLOBAL.CategoryTwoStore.loadData(arr);
+            }
+          }
+        }),
+        new Ext.custom.basicCombo({
+          itemId:"CategoryTwo",
+          margin:10,
+          valueField:"sysId",
+          displayField:"title",
+          store: GLOBAL.CategoryTwoStore,
+          listeners:{
+            change:function(g,value){
+              GLOBAL.classForm.down("#CategoryThree").setValue("");
+              var arr=[];
+              for(var i=0;i<GLOBAL.CategoryData.length;i++){
+                if(GLOBAL.CategoryData[i].fatherId==value){
+                  arr.push(GLOBAL.CategoryData[i])
+                }
+              }
+              GLOBAL.CategoryThreeStore.loadData(arr);
+            }
+          }
+        }),
+        new Ext.custom.basicCombo({
+          itemId:"CategoryThree",
+          margin:10,
+          valueField:"sysId",
+          displayField:"title",
+          store:GLOBAL.CategoryThreeStore ,
+        }),{
+          xtype:"button",
+          width:100,
+          height:34,
+          text:"查询",
+          margin:10,
+          handler:function(){
+
+          }
+        }
+      ]
+    })
+
+    //class 列表
+    //创建仓库
+    GLOBAL.classStore=Ext.create("Ext.data.Store",{
+      fields:["Cname","Cnumber","ID","onlineUser","createAt","isState","isTop","CategoryOne"]
+    })
+    //创建分页栏
+    GLOBAL.classBar=Ext.create("PagingToolBar",{
+      onChange:function(g,PageFirst,PageSize){
+        var pageStart=parseInt(PageFirst/PageSize+1);
+        getClassList(pageStart,PageFirst)
+      }
+    })
+
+    GLOBAL.gridBox=Ext.create("Ext.grid.Panel",{
+
+      minHeight:BPR.gridMinHeight,
+      id:"classId",
+      store:GLOBAL.classStore,
+      bbar:GLOBAL.classBar,
+      renderTo:"classBox",
+      columns:[
+        {header:"课程名称",width:150,dataIndex:"Cname"},
+        {header:"课程代号",width:150,dataIndex:"Cnumber",flex:1},
+        {header:"在学人数",width:150,dataIndex:"onlineUser"},
+        {header:"所属分类",width:150,dataIndex:"CategoryOne",
+          renderer:function(value){
+            for(var i=0;i<GLOBAL.CategoryData.length;i++){
+              if(GLOBAL.CategoryData[i].sysId==value){
+                return GLOBAL.CategoryData[i].title;
+              }
+            }
+          }
+        },
+
+        {header:"编辑日期",width:150,dataIndex:"createAt"},
+        {header:"状态",width:150,dataIndex:"isState",
+          renderer:function(value,sellmeta,record){
+            if(record.data.isState==1){
+              return"<a class='xn_tablea'>草稿</a>"
+            }else if(record.data.isState==2){
+              return"<a class='xn_tablea'>上架</a>"
+            }else{
+              return"<a class='xn_tablea'>下架</a>"
+            }
+
+          }
+        },
+        {header:"操作",width:200,dataIndex:"ID",
+          renderer:function(value,sellmeta,record){
+            var shangStr=record.data.isState==2?"下架":"上架";
+            var dingStr=record.data.isTop?"取消置顶":"置顶";
+            console.log(record.data.isState);
+            return "<a class='xn_tablea'onclick='shangjia("+value+")'>"+shangStr+"</a>"+
+              "<a class='xn_tablea'onclick='editor("+value+")'>编辑</a>"+
+              "<a class='xn_tablea'onclick='classDel("+value+")'>删除</a>"+
+              "<a class='xn_tablea'onclick='isTop("+value+")'>"+dingStr+"</a>"
+          }
+        }
+      ]
+    })
+    getClassList();
+  })
+
+  //动态参数求取
+  function getClassList(pageStart,pageFirst){
+    var data={
+      searchText:GLOBAL.classForm.down("#classSearch").getValue(),
+      pageStart:pageStart?pageStart:1
+    };
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=show",
+      type:"post",
+      dataType:"json",
+      data:data,
+      async:false,
+    }).done(function(result){
+      GLOBAL.classBar.setPageSize(result.data.pageSize);
+      GLOBAL.classBar.loadPage(pageFirst?pageFirst:0,result.data.count);
+      GLOBAL.classStore.loadData(result.data.list)
+    })
+  }
+  //置顶/取消置顶
+  function isTop(userId){
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=top",
+      type:"post",
+      dataType:"json",
+      async:false,
+      data:{
+        ID:userId
+      }
+    }).done(function(result){
+      Ext.Msg.alert("提示",result.success)
+      getClassList()
+    })
+  }
+  //删除
+  function classDel(userId){
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=delete",
+      type:"post",
+      dataType:"json",
+      async:false,
+      data:{
+        ID:userId
+      }
+    }).done(function(result){
+      console.log(result);
+      Ext.Msg.alert("提示",result.success)
+      getClassList()
+    })
+  }
+  //上架
+  function shangjia(userId){
+    $.ajax({
+      url:"/Handler/CourseHandler.ashx?action=state",
+      type:"post",
+      dataType:"json",
+      async:false,
+      data:{
+        ID:userId
+      }
+    }).done(function(result){
+      Ext.Msg.alert("提示",result.success)
+      getClassList()
+    })
+  }
+  //编辑跳转
+  function  editor(editor){
+    window.open("classEditor.html?edit=edit&courseId="+editor)
+  }
+</script>
+</html>

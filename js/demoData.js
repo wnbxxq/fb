@@ -1,0 +1,165 @@
+/**
+ * Created by Administrator on 2016/6/14.
+ */
+var GLOBAL=GLOBAL||{};
+//专业分类数据
+GLOBAL.classifyData = [
+    {
+        "name":"前端语言",      //专业名称
+        "classifyCode":"1",   //专业分类所对应的专业代号值，唯一
+        "fatherCode":null     //父级的classifyCode，第一级分类没有上级，所以为null
+    },{
+        "name":"后端语言",
+        "classifyCode":"2",
+        "fatherCode":null
+    },{
+        "name":"html",
+        "classifyCode":"3",
+        "fatherCode":"1"
+    },{
+        "name":"css",
+        "classifyCode":"4",
+        "fatherCode":"1"
+    },{
+        "name":"javascript",
+        "classifyCode":"5",
+        "fatherCode":"1"
+    },{
+        "name":"java",
+        "classifyCode":"6",
+        "fatherCode":"2"
+    },{
+        "name":"php",
+        "classifyCode":"7",
+        "fatherCode":"2"
+    },{
+        "name":"nodejs",
+        "classifyCode":"8",
+        "fatherCode":"2"
+    }
+];
+
+//表格数据
+GLOBAL.tableData = [
+    {
+        "title":"html基础1",        //课程名称
+        "nomber":"yysd4568",       //课程代号
+        "courseId":"1",            //课程id
+        "classifyCode":"3",        //课程分类所对应的专业代号值。
+        "updateAt":"2014/05/09",   //编辑日期
+        "createAt":"2014/05/09",   //创建日期
+        "status":2                 //课程状态
+    },{
+        "title":"html基础2",
+        "nomber":"yysd4568",
+        "courseId":"2",
+        "classifyCode":"3",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"html基础3",
+        "nomber":"yysd4568",
+        "courseId":"3",
+        "classifyCode":"3",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"html基础4",
+        "nomber":"yysd4568",
+        "courseId":"4",
+        "classifyCode":"3",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"css基础1",
+        "nomber":"yysd4568",
+        "courseId":"5",
+        "classifyCode":"4",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"css基础2",
+        "nomber":"yysd4568",
+        "courseId":"6",
+        "classifyCode":"4",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"css基础3",
+        "nomber":"yysd4568",
+        "courseId":"7",
+        "classifyCode":"4",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"css基础4",
+        "nomber":"yysd4568",
+        "courseId":"8",
+        "classifyCode":"4",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"css基础5",
+        "nomber":"yysd4568",
+        "courseId":"9",
+        "classifyCode":"4",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"css基础6",
+        "nomber":"yysd4568",
+        "courseId":"10",
+        "classifyCode":"4",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"javascript基础",
+        "nomber":"yysd4568",
+        "courseId":"11",
+        "classifyCode":"5",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"java基础",
+        "nomber":"yysd4568",
+        "courseId":"12",
+        "classifyCode":"6",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"php基础",
+        "nomber":"yysd4568",
+        "courseId":"13",
+        "classifyCode":"7",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"nodejs基础1",
+        "nomber":"yysd4568",
+        "courseId":"14",
+        "classifyCode":"8",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    },{
+        "title":"nodejs基础2",
+        "nomber":"yysd4568",
+        "courseId":"15",
+        "classifyCode":"8",
+        "updateAt":"2014/05/09",
+        "createAt":"2014/05/09",
+        "status":2
+    }
+];

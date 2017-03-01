@@ -1,0 +1,45 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.fooder{
+	width: 100%;
+	height: 36px;
+	background: #202020;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 14px;
+    line-height: 36px;
+}
+
+
+.fanhuitop{
+	width: 87px;
+	height: 161px;
+	position: fixed;
+	right: 40px;
+	bottom: 162px;
+	z-index: 999;
+	display: none;
+}
+.fanhuitop_top{
+	width: 50px;
+	height: 50px;
+	margin: 0 auto;
+	cursor: pointer;
+	transition: all .5s ease 0s;
+	background: url(../images/scroll_top_bg.png) no-repeat 0px 0px; 
+}
+.fanhuitop_top:hover{
+	background-position: 0px -50px;
+	transition: all .5s ease 0s;
+}
+.fanhuitop_youxiang{
+	height: 87px;
+	width: 87px;
+	position: absolute;
+	top: 74px;
+	right: 0;
+	background: url(../images/fixed_contactus.png) top right no-repeat;
+    cursor: pointer;
+}
